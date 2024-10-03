@@ -1,0 +1,72 @@
+.footer {
+  margin-top: 10%;
+}
+
+.divTitleFooter {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1em;
+  background: var(--secondary-color);
+  height: 12vh;
+}
+
+.divTitleFooter h2 {
+  text-align: center;
+  margin: auto;
+  color: var(--font-color);
+}
+
+.ulLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column-start: 3;
+}
+
+.ulLogos ul {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.ulLogos ul li {
+  list-style-type: none;
+}
+.ulLogos ul li img {
+  width: 35px;
+  height: 35px;
+}
+
+/*Parte debaixo do footer*/
+.footerDiv {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: 25vh;
+}
+
+.footerDiv div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--primary-color);
+}
+
+.footerDiv div a {
+  text-decoration: none;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1.2em;
+  border-bottom: solid 2px var(--secondary-color);
+  color: var(--font-color);
+}
+
+.footerDiv div p {
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 1em;
+  margin: 0 10%;
+  color: var(--font-color);
+}

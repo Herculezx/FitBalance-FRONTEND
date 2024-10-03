@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /*Root para usos comuns*/
+  :root {
+    --primary-color: #3d3d3d;
+    --secondary-color: #01d87d;
+    --font-color: #f8f8f8;
+    --font: "Montserrat", sans-serif;
+  }
+
+
+
+
+
+
+
+
+
+/* footer{
+    background-color: antiquewhite;
+    padding: 10px;
+    text-align: center;
+}
+
+.menu{
+    background-color: brown; 
+ }
+ 
+ .menu a {
+     color: aqua;
+ } */
