@@ -19,12 +19,12 @@ const MenuResponsive = () => {
   return (
     <div className="overflow-x-hidden">
       <header className="flex flex-col items-center justify-center max-w-full">
-        <div className="bg-primaryColor w-full flex items-center justify-between h-16 px-4 ">
+        <div className="bg-primaryColor w-full flex items-center justify-between h-[9vh] px-4 ">
           <Link to="/" className="text-white font-bold text-2xl">
             FitBalance
           </Link>
 
-          <div className="hidden md:flex md:items-center md:justify-end md:w-full md:gap-8">
+          <div className="hidden md:flex md:items-center md:justify-end md:w-full md:gap-8 ">
             <Link to="/faleconosco" className="text-white font-bold hover:border-b-2 hover:border-bd duration-100 text-xl">
               Fale Conosco
             </Link>

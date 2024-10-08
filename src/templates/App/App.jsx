@@ -17,11 +17,16 @@ function App() {
 
   return (
     <>
+      <MenuResponsive />
       <Header />
+      <AreaFitBalance />
+
+
+      {/* <Header />
       <MenuResponsive />
       <AreaFitBalance />
       <CardImportancia />
-      <FooterResponsive />
+      <FooterResponsive /> */}
     </>
   )
 }

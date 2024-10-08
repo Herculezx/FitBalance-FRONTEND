@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    gridTemplateColumns: {
+      'custom': '1fr 4fr 1fr'
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

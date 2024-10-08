@@ -21,6 +21,7 @@ const ExerciciosForm = () => {
       if (dados) setAll(dados)
     }, [dados])
   console.log(valores)
+  
   function salvarImagem(e){
     const file = e.target?.files[0] ?? ""
     const reader = new FileReader()

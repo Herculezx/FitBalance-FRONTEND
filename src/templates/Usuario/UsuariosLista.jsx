@@ -5,6 +5,8 @@ import logo from '../../assets/images/home.png'
 import UsuarioService from "../../services/UsuarioService"
 import { useEffect, useState } from "react"
 import useRequisitar from "../../hooks/useRequisitar"
+import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
+import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
 
 const UsuariosLista = () => {
 
@@ -14,17 +16,24 @@ const UsuariosLista = () => {
         navigate('/usuarioeditar')
     }
 
-    const { carregando , dados: usuarios} = useRequisitar(`usuario/findAll`)
+    const { carregando, dados: usuarios } = useRequisitar(`usuario/findAll`)
 
     const editar = (id) => {
         navigate(`/usuarioeditar/` + id)
     }
 
+    const userJson = localStorage.getItem("user");
+    const user = JSON.parse(userJson || '{}');
+    const currentUser = UsuarioService.getCurrentUser();
+
     return (
-        <div className="d-flex">
-            <Sidebar />
-            <div className="p-3 w-100">
-                <section className="m-2 p-2 shadow-lg">
+        <div className="">
+            <MenuResponsive />
+            <div className="flex justify-center items-center mt-10">
+                {currentUser && <span className="text-white font-bold text-lg bg-primaryColor px-4 py-2 rounded-2xl shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">{currentUser.nome}</span>}
+            </div>
+            <div className="mt-10">
+                <section className="mx-5 p-2 shadow-lg">
                     <div className="table-wrapper">
                         <table className="table table-striped table-hover">
                             <thead>
@@ -33,7 +42,7 @@ const UsuariosLista = () => {
                                     <th scope="col">Nome</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Acesso</th>
-                                    <th scope="col">Cadastro</th>
+                                    <th scope="col">Data de Nascimento</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Abrir</th>
                                 </tr>
@@ -45,7 +54,7 @@ const UsuariosLista = () => {
                                         <td>{usuario.nome}</td>
                                         <td>{usuario.email}</td>
                                         <td>{usuario.nivelAcesso}</td>
-                                        <td>{usuario.dataCadastro}</td>
+                                        <td>{usuario.dataNascimento}</td>
                                         <td>{usuario.statusUsuario}</td>
                                         <td>
                                             <button onClick={() => editar(usuario.id)}
@@ -59,6 +68,8 @@ const UsuariosLista = () => {
                         </table>
                     </div>
                 </section>
+                <Sidebar />
+                <FooterResponsive />
             </div>
         </div>
     )

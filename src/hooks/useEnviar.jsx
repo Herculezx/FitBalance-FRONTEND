@@ -16,7 +16,7 @@ export default function useEnviar(aoReceber){
                 "logado": email
               }})
             console.log(requisicao.data)
-            aoReceber()
+            aoReceber(requisicao.data)
             setCarregando(false)
         } ,
     }
