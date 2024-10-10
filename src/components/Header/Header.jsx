@@ -17,7 +17,7 @@ const Header = () => {
             <h1 className="font-bold text-xl underline underline-offset-[10px] sm:text-2xl">
               Bem Vindo ao <span className="text-primaryColor underline underline-offset-[10px]">FitBalance</span>
             </h1>
-            <p className="py-4 mx-10 font-medium text-md text-center // sm:text-lg ">
+            <p className="py-4 mx-10 font-medium text-md text-center sm:text-lg">
               Despertar sua melhor versão envolve um compromisso com um estilo
               de vida saudável que combina exercícios regulares e uma
               alimentação equilibrada. Ao seguir este guia, você estará no

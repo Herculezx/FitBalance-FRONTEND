@@ -20,6 +20,7 @@ function App() {
       <MenuResponsive />
       <Header />
       <AreaFitBalance />
+      <CardImportancia />
 
 
       {/* <Header />

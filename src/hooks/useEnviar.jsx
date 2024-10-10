@@ -18,6 +18,7 @@ export default function useEnviar(aoReceber){
             console.log(requisicao.data)
             aoReceber(requisicao.data)
             setCarregando(false)
+            return requisicao.data
         } ,
     }
 }
