@@ -10,6 +10,7 @@ import useRequisitar from "../../hooks/useRequisitar"
 
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
+import useForm from "../../hooks/useForm"
 
 const UsuarioPerfil = () => {
 
@@ -17,9 +18,14 @@ const UsuarioPerfil = () => {
         id: null,
         nome: "",
         email: "",
-        nivelAcesso: ""
+        nivelAcesso: "",
+        statusUsuario: "",
+        foto: null
     };
 
+    const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
+
+    const [imagem, setImagem] = useState("");
 
     const { id } = useParams();
     const _dbRecords = useRef(true);
@@ -35,6 +41,28 @@ const UsuarioPerfil = () => {
         setFormData(formData => ({ ...formData, [name]: value }));
     }
 
+
+    function salvarImagem(e) {
+        const file = e.target?.files[0] ?? ""
+        const reader = new FileReader()
+
+        reader.onload = (event) => {
+
+            const extensao = file.name.split(".").pop()
+            if (typeof event.target?.result == "string") {
+                setImagem(event.target?.result)
+                reader.readAsArrayBuffer(file)
+            }
+            else {
+                console.log({ conteudo: Array.from(new Uint8Array(event.target?.result)) }.conteudo)
+                mudarDireto("foto", { conteudo: Array.from(new Uint8Array(event.target?.result)), extensao: `image/${extensao}` })
+            }
+        }
+        if (file) {
+            reader.readAsDataURL(file)
+
+        }
+    }
 
     /*
         A propriedade 'value' para um campo de formulário sem um manipulador 'onChange', 
@@ -55,16 +83,23 @@ const UsuarioPerfil = () => {
                                     Suas informações
                                 </h1>
                             </div>
-                            
+
                             <form className="bg-primaryColor mt-10 flex flex-col items-center justify-center p-5 rounded-3xl // sm:w-3/5 //  // // lg:w-4/5 lg:flex-row lg:gap-10 // xl:gap-48">
-                                
+
                                 <div className="flex items-center justify-center flex-col">
-                                <button type="button" onClick={() => {
-                                    navigate(-1)
-                                }} className="btn btn-sm bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white">
-                                    <i className="bi bi-box-arrow-left // text-white"></i> Voltar
-                                </button>
-                                    <img className="rounded-2xl border-solid border-3d border-2 my-5" src={usuario.foto ? usuario.foto : perfil} alt="..." />
+                                    <button type="button" onClick={() => {
+                                        navigate(-1)
+                                    }} className="btn btn-sm bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white">
+                                        <i className="bi bi-box-arrow-left // text-white"></i> Voltar
+                                    </button>
+                                </div>
+                                <div>
+                                    <img
+                                        src={imagem}
+                                        className="w-96"
+                                        alt="" />
+                                    <label htmlFor="img">Selecione Sua Imagem</label>
+                                    <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden' />
                                 </div>
 
                                 <div className="lg:flex-wrap">
@@ -106,8 +141,8 @@ const UsuarioPerfil = () => {
                         <FooterResponsive />
 
                     </section>}
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

@@ -9,7 +9,8 @@ import useForm from "../../hooks/useForm"
 const LoginForgotPass = () => {
     const [parte , setParte] = useState(0);
     const [codigo, setCodigo] = useState()
-    const { valores, mudar } = useForm({ email: "", codigo: "", senha: "" })
+    const [ conta , setConta ] = useState()
+    const { valores, mudar  } = useForm({ email: "", codigo: "", senha: "" })
     const navigate = useNavigate();
     const { requisitar } = useEnviar()
 
@@ -33,19 +34,31 @@ const LoginForgotPass = () => {
                             const resposta = await requisitar(`usuario/codigo/${valores.email}/`)
 
                             console.log(resposta)
+                            setCodigo(resposta.codigo)
+                            setConta(resposta.conta)
                             setParte(1)
                         }} >proximo</button>
                     </div>}
                     {parte == 1 && <div>
                         <label htmlFor="codInput">Código que foi enviado</label>
-                        <input type="text" name="codInp" id="codInp" />
-                        <button onClick={() => {
+                        <input onChange={mudar("codigo")} type="text" name="codInp" id="codInp" />
+                        <button type="button" onClick={() => {
                             if (valores.codigo == codigo) {
                                 setParte(2)
                             }
                         }}>proximo</button>
                         </div>}
-                    {parte == 2 && <div></div>}
+                    {parte == 2 && <div>
+                        <div>
+                            <input type="password" name="" id="" onChange={mudar("senha")}/>
+                            <button onClick={async() => {
+                                await requisitar("usuario/codigo/", {senha: valores.senha , conta})
+                                navigate(`/login`)
+                            }} type="button">
+                                Salvar Senha Nova
+                            </button>
+                        </div>
+                        </div>}
                 <div className="login-logo">
                     <img src={logo} alt="logo" />
                 </div>

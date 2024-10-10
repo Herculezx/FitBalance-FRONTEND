@@ -11,6 +11,8 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
 
+    console.log(user)
+
     const logout = () => {
         UsuarioService.logout();
         navigate("/");
@@ -29,7 +31,7 @@ const Sidebar = () => {
 
                         <div className="flex justify-center items-center flex-col text-center bg-3d py-12 px-24 rounded-3xl gap-6 border-solid border-borda border-2">
 
-                            <img src={currentUser.foto ? currentUser.foto : perfil} alt="logo" className="mt-2 w-32 border-solid border-borda border-2 rounded-xl" />
+                            <img src={currentUser.foto_id ? `http://localhost:8080/arquivo/${currentUser.foto_id}` : perfil} alt="logo" className="mt-2 w-32 border-solid border-borda border-2 rounded-xl" />
 
                             <span className="text-white font-bold text-lg">{currentUser.nome}</span>
 

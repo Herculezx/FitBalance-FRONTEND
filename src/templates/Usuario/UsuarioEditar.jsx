@@ -16,10 +16,11 @@ const UsuarioEditar = () => {
         nome: "",
         email: "",
         nivelAcesso: "",
-        statusUsuario: ""
+        statusUsuario: "",
+        foto: null
     };
 
-    const { mudar, valores , setAll} = useForm(objectValues)
+    const { mudar, valores, setAll , mudarDireto } = useForm(objectValues)
     const [usuario, setUsuario] = useState(objectValues);
 
     const { requisitar } = useEnviar((dados) => {
@@ -32,6 +33,7 @@ const UsuarioEditar = () => {
     const { id } = useParams();
 
     const _dbRecords = useRef(true);
+    const [imagem , setImagem] = useState("");
     const [formData, setFormData] = useState({});
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState();
@@ -114,6 +116,28 @@ const UsuarioEditar = () => {
         })
     }, []);
 
+    function salvarImagem(e) {
+        const file = e.target?.files[0] ?? ""
+        const reader = new FileReader()
+
+        reader.onload = (event) => {
+            
+            const extensao  = file.name.split(".").pop()
+            if(typeof event.target?.result == "string"){
+                setImagem(event.target?.result)  
+                reader.readAsArrayBuffer(file)
+            }
+            else{
+                console.log({conteudo :  Array.from(new Uint8Array( event.target?.result))}.conteudo)
+                mudarDireto("foto", {conteudo : Array.from(new Uint8Array( event.target?.result)), extensao: `image/${extensao}`})
+            }
+        }
+        if (file) {
+            reader.readAsDataURL(file)
+           
+        }
+    }
+
 
     /*
         A propriedade 'value' para um campo de formulário sem um manipulador 'onChange', 
@@ -128,11 +152,19 @@ const UsuarioEditar = () => {
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-2 m-5 p-2 rounded-2 shadow" onSubmit={(e) => {
                         e.preventDefault()
-                        console.log({...usuario , ...valores})
-                        console.log({...usuario})
+                        console.log({ ...usuario, ...valores })
+                        console.log({ ...usuario })
                         requisitar("usuario/salvar", { ...usuario, ...valores })
 
                     }} >
+
+                        <div>
+                            <img
+                                src={imagem}
+                                alt="" />
+                            <label htmlFor="img">Selecione Sua Imagem</label>
+                            <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden' />
+                        </div>
                         <div className="col-md-2">
                             <label htmlFor="inputID" className="form-label mb-1 fw-bold">ID:</label>
                             <input type="text" className="form-control" id="inputID" readOnly

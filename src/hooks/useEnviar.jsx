@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 
-export default function useEnviar(aoReceber){
+export default function useEnviar(aoReceber=() => {}){
     const basePath = "http://localhost:8080/"
     const [carregando, setCarregando] = useState(false);
    

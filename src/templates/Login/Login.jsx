@@ -99,6 +99,10 @@ const Login = () => {
                                  onChange={handleChange} />
                             </div>
 
+                            <div>
+                                {message}
+                            </div>
+
                             <div className={styles.divBtn}>
                                  <button type="button" onClick={backto}> Cancelar </button>
                                  <button type="submit"> Entrar </button>
