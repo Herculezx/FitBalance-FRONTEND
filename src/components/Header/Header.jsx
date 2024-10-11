@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <div className="w-full h-[91vh] bg-cover flex items-center bg-center bg-[url('/background-homepage-edit.jpg')] // sm:grid sm:grid-cols-custom ">
         <div className="flex flex-col gap-4 text-white justify-start bg-[#181818eb] rounded-xl // sm:col-start-2 shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(53,224,105,0.15)]">
-          <div className="text-xl text-white py-4 font-bold bg-[#01D87D] rounded-xl flex items-center justify-center flex-wrap // sm:text-xl lg:text-2xl">
+          <div className="text-xl text-white text-center py-4 font-bold bg-[#01D87D] rounded-xl flex items-center justify-center flex-wrap // sm:text-xl lg:text-2xl">
             <h1>É hora de começar a diferença na sua vida!</h1>
           </div>
 

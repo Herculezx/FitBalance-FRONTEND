@@ -96,18 +96,19 @@ const ExerciciosForm = () => {
             <input type="text" id='instrucoes' className='form-control border-solid border-3d border-2 rounded-lg text-center my-3 font-bold text-borda' onChange={mudar("instrucoes")} value={valores.instrucoes} placeholder='Insira as instruções do exercicio' />
           </div>
 
-          <div>
+          <div className='flex items-center justify-center flex-col text-white font-bold'>
             <img 
             src={valores.imagem} 
-            
+            className="max-w-96 rounded-3xl"
             alt="" />
             <label htmlFor="img">Selecione Sua Imagem</label>
             <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden'/>
           </div>
 
-          <div>
+          <div className='flex items-center justify-center flex-col text-white font-bold'>
             <video
             src={valores.video} 
+            className='h-96 rounded-3xl'
             controls
             alt="" />
             <label htmlFor="video">Selecione Seu Vídeo</label>

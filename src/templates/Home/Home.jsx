@@ -20,15 +20,15 @@ const Home = () => {
                 <div>
                     <MenuResponsive />
                     <section>
-                        <div>
-                            <h1 className="flex content-center justify-center mt-4  text-3xl font-bold ">
+                        <div className="flex content-center justify-center mt-10  text-3xl font-bold">
+                            <h1>
                                 Essas são nossas Áreas!
                             </h1>
                         </div>
                         {/* Div de Título da página Areas */}
-                        <div className="flex flex-col lg:grid lg:grid-cols-2 md:mt-10 mt-10 bg-3d h-auto">
-                            <div className="flex items-center justify-center gap-y-8 flex-col">
-                                <h1 className="mt-12 text-white font-bold text-3xl">Exercícios</h1>
+                        <div className="flex flex-col mt-10 md:flex-row md:justify-evenly  bg-3d ">
+                            <div className="flex flex-col items-center py-10 gap-10">
+                                <h1 className=" text-white font-bold text-3xl">Exercícios</h1>
                                 <img
                                     src={imgAlimentacao}
                                     alt=""
@@ -47,8 +47,8 @@ const Home = () => {
                                 </a>
                             </div>
                             {/* Grid 1 */}
-                            <div className="flex items-center justify-center gap-y-8 flex-col">
-                                <h1 className="mt-12 text-white font-bold text-3xl">Alimentação</h1>
+                            <div className="flex flex-col items-center py-10 gap-10">
+                                <h1 className=" text-white font-bold text-3xl">Alimentação</h1>
                                 <img
                                     src={imgAlimentacao}
                                     alt=""

@@ -10,7 +10,7 @@ const CardImportancia = () => {
     <>
       <section>
 
-        <div className="flex justify-center items-center my-10 font-bold text-xl">
+        <div className="flex justify-center items-center my-10 font-bold text-xl lg:text-3xl text-center">
           <h1>A Importância de ter hábitos saudáveis</h1>
         </div>
         <div className="flex flex-col bg-primaryColor rounded-3xl py-10 text-white gap-10 md:flex-row md:justify-evenly">
