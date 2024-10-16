@@ -26,7 +26,7 @@ const UsuarioNovo = () => {
     })
 
     const { requisitar } = useEnviar(() => {
-        navigate("/login")
+        navigate("/usuarioslista")
         console.log("recebido")
     })
     const handleChange = (e) => {

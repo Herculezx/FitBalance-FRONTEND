@@ -3,11 +3,13 @@ import './Sidebar.css';
 import logo from '../../assets/images/system-logo_24_x_24.png';
 import perfil from '../../assets/images/perfil_blz.jpg'
 import UsuarioService from "../../services/UsuarioService";
+import useForm from "../../hooks/useForm";
 
 const Sidebar = () => {
     const userJson = localStorage.getItem("user");
     const user = JSON.parse(userJson || '{}');
     const currentUser = UsuarioService.getCurrentUser();
+    const currentUserNow = UsuarioService.getCurrentUserNow();
 
     const navigate = useNavigate();
 
@@ -21,6 +23,17 @@ const Sidebar = () => {
     const editar = (id) => {
         navigate(`/usuarioperfil/` + id)
     }
+
+    const objectValues = {
+        id: null,
+        nome: "",
+        email: "",
+        nivelAcesso: "",
+        statusUsuario: "",
+        foto: null
+    };
+
+    const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
 
     return (
         <>
@@ -55,16 +68,16 @@ const Sidebar = () => {
                     <nav className="flex flex-row justify-center items-center // md:flex-wrap md:gap-12">
                         <Link className="underline mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
                         <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>
-                        { user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
-                        { user.nivelAcesso === "USER" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>}
-                        { user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}
+                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
+                        {user.nivelAcesso === "USER" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>}
+                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}
                     </nav>
                 </div> :
                 <></>
             }
         </>
     )
-}
+} 
 
 export default Sidebar
 

@@ -53,7 +53,7 @@ const FooterResponsive = () => {
                   href="#"
                   className="underline font-bold text-xl ml-5 underline-offset-8 decoration-primaryColor // sm:ml-0 //"
                 >
-                  FitMind
+                  FitBalance
                 </a>
                 <p className="text-md my-3 ml-5 border-solid border-b border-white w-80 pb-4 // sm:ml-0 // lg:border-none">
                   A empresa que faz acontecer a diferença em sua vida, tanto

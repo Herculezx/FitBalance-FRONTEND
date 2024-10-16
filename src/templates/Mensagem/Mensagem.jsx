@@ -29,7 +29,7 @@ const Mensagem = () => {
                     <div className="border-b-2 border-b-borda flex justify-between px-20 py-3">
                         <div>
                             <button type="button" onClick={() => {
-                                navigate(-1)
+                                navigate('/home')
                             }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
                                 <i className="bi bi-box-arrow-left // text-white"></i> Voltar
                             </button>
@@ -45,7 +45,7 @@ const Mensagem = () => {
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    {user.nivelAcesso === "ADMIN" && <th scope="col">ID</th>}
                                     <th scope="col">Data</th>
                                     <th scope="col">Emissor</th>
                                     <th scope="col">Email</th>
@@ -56,7 +56,7 @@ const Mensagem = () => {
                             <tbody>
                                 {mensagens?.map((mensagem) => (
                                     <tr key={mensagem.id}>
-                                        <td scope="row">{mensagem.id}</td>
+                                        {user.nivelAcesso === "ADMIN" && <td scope="row">{mensagem.id}</td>}
                                         <td>{mensagem.dataMensagem}</td>
                                         <td>{mensagem.emissorMensagem}</td>
                                         <td>{mensagem.email}</td>

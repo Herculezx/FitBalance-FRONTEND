@@ -79,6 +79,10 @@ const createTeste = (data) => {
   return http.mainInstance.post(API_URL + "createnew", formData);
 };
 
+const getCurrentUserNow = async () => {
+  return http.mainInstance.get(API_URL + `findById/${id}`);
+};
+
 const UsuarioService = {
   findAll,
   findById,
@@ -86,6 +90,7 @@ const UsuarioService = {
   signin,
   logout,
   getCurrentUser,
+  getCurrentUserNow,
   create,
   createTeste,
   update,

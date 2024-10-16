@@ -11,7 +11,7 @@ import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 
 const MensagemLer = () => {
 
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { id } = useParams();
 
@@ -35,14 +35,34 @@ const MensagemLer = () => {
 
     console.log(carregando)
     console.table(mensagem)
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     setSuccessful(false);
+
+    //     MensagemService.inativar(id).then(
+    //         (response) => {
+    //             setMessage(response.data.message);
+    //             setSuccessful(true);
+    //             window.scrollTo({
+    //                 top: 0,
+    //                 behavior: 'smooth'
+    //             })
+    //             navigate('/mensagem')
+    //         }, (error) => {
+    //             const message = error.response.data.message;
+    //             setMessage(message);
+    //         }
+    //     )
+    // }
+
+    const marcarComoLida = () => {
         setSuccessful(false);
 
-        MensagemService.inativar(id).then(
+        MensagemService.marcarComoLida(id).then(
             (response) => {
                 setMessage(response.data.message);
                 setSuccessful(true);
+                navigate('/mensagem');
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -54,13 +74,33 @@ const MensagemLer = () => {
         )
     }
 
-    const marcarComoLida = () => {
+    const reativarMensagem = () => {
         setSuccessful(false);
 
-        MensagemService.marcarComoLida(id).then(
+        MensagemService.ativar(id).then(
             (response) => {
                 setMessage(response.data.message);
                 setSuccessful(true);
+                navigate('/mensagem');
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
+            }, (error) => {
+                const message = error.response.data.message;
+                setMessage(message);
+            }
+        )
+    }
+
+    const inativarMensagem = () => {
+        setSuccessful(false);
+
+        MensagemService.inativar(id).then(
+            (response) => {
+                setMessage(response.data.message);
+                setSuccessful(true);
+                navigate('/mensagem');
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
@@ -79,17 +119,18 @@ const MensagemLer = () => {
             <div className="">
                 {carregando ? <h1>carregando</h1> : <section className="m-2 p-2 shadow-lg">
                     <button type="button" onClick={() => {
-                        navigate(-1)
+                        navigate('/mensagem')
                     }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
                         <i className="bi bi-box-arrow-left // text-white"></i> Voltar
                     </button>
 
-                    <form className="row g-2 m-5 p-2 rounded-2 shadow" onSubmit={handleSubmit}>
-                        <div className="col-md-2 mb-2">
+                    <form className="row g-2 m-5 p-2 rounded-2 shadow">
+                        {user.nivelAcesso === "ADMIN" && <div className="col-md-2 mb-2">
                             <label htmlFor="id" className="form-label mb-1 fw-bold">ID:</label>
                             <input type="text" className="form-control" id="id" name="id" readOnly
                                 value={mensagem.id || ''} />
                         </div>
+                        }
                         <div className="col-md-5 mb-2">
                             <label htmlFor="inputData" className="form-label mb-1 fw-bold">Data:</label>
                             <input type="text" className="form-control text-center" id="inputData" readOnly
@@ -120,15 +161,19 @@ const MensagemLer = () => {
                             </textarea>
                         </div>
 
-                        <div className="col-12 mb-3 d-flex justify-content-around">
+                        {user.nivelAcesso === "ADMIN" && <div className="col-12 mb-3 d-flex justify-content-around">
                             <button type="button" className="btn btn-warning"
                                 onClick={() => marcarComoLida()}>
-                                Marcar com Lida
+                                Marcar como Lida
                             </button>
-                            <button type="submit" className="btn btn-danger">
+                            <button type="button" className="btn btn-warning" onClick={() => reativarMensagem()}>
+                                Reativar
+                            </button>
+                            <button type="button" className="btn btn-danger" onClick={() => inativarMensagem()}>
                                 Inativar
                             </button>
-                        </div>
+                        </div>}
+
                     </form>
                 </section>
                 }

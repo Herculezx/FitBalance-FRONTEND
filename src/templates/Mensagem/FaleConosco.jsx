@@ -5,7 +5,7 @@ import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
 import { useEffect } from "react"
 
-import {useNavigation, useRoutes, useNavigate} from "react-router-dom"
+import { useNavigation, useRoutes, useNavigate } from "react-router-dom"
 
 const FaleConosco = () => {
     const userJson = localStorage.getItem("user");
@@ -92,7 +92,7 @@ const FaleConosco = () => {
                             </div>
                             <div className="flex flex-row justify-center gap-10">
                                 <button type="submit" className="btn btn-primary">Enviar</button>
-                                
+
                                 <button type="button" onClick={() => {
                                     navigate(-1)
                                 }} className="btn btn-sm bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white">
@@ -103,6 +103,13 @@ const FaleConosco = () => {
                     )}
                     {message && (
                         <div className="m-1">
+                            <div>
+                                <button type="button" onClick={() => {
+                                    navigate('/home')
+                                }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
+                                    <i className="bi bi-box-arrow-left // text-white"></i> Voltar
+                                </button>
+                            </div>
                             <div className={
                                 "text-center h4 fst-italic py-4 rounded-2 border border-5 " + (successful ? "border-success" : "border-danger")
                             }>

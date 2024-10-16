@@ -20,7 +20,7 @@ const UsuarioEditar = () => {
         foto: null
     };
 
-    const { mudar, valores, setAll , mudarDireto } = useForm(objectValues)
+    const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
     const [usuario, setUsuario] = useState(objectValues);
 
     const { requisitar } = useEnviar((dados) => {
@@ -33,7 +33,7 @@ const UsuarioEditar = () => {
     const { id } = useParams();
 
     const _dbRecords = useRef(true);
-    const [imagem , setImagem] = useState("");
+    const [imagem, setImagem] = useState("");
     const [formData, setFormData] = useState({});
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState();
@@ -121,20 +121,20 @@ const UsuarioEditar = () => {
         const reader = new FileReader()
 
         reader.onload = (event) => {
-            
-            const extensao  = file.name.split(".").pop()
-            if(typeof event.target?.result == "string"){
-                setImagem(event.target?.result)  
+
+            const extensao = file.name.split(".").pop()
+            if (typeof event.target?.result == "string") {
+                setImagem(event.target?.result)
                 reader.readAsArrayBuffer(file)
             }
-            else{
-                console.log({conteudo :  Array.from(new Uint8Array( event.target?.result))}.conteudo)
-                mudarDireto("foto", {conteudo : Array.from(new Uint8Array( event.target?.result)), extensao: `image/${extensao}`})
+            else {
+                console.log({ conteudo: Array.from(new Uint8Array(event.target?.result)) }.conteudo)
+                mudarDireto("foto", { conteudo: Array.from(new Uint8Array(event.target?.result)), extensao: `image/${extensao}` })
             }
         }
         if (file) {
             reader.readAsDataURL(file)
-           
+
         }
     }
 
@@ -159,10 +159,25 @@ const UsuarioEditar = () => {
                     }} >
 
                         <div>
-                            <img
-                                src={imagem}
-                                alt="" />
-                            <label htmlFor="img">Selecione Sua Imagem</label>
+                            <button type="button" onClick={() => {
+                                navigate('/home')
+                            }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
+                                <i className="bi bi-box-arrow-left // text-white"></i> Voltar
+                            </button>
+                        </div>
+
+                        <div>
+                            {imagem ? ( // Condicional para mostrar a imagem apenas se houver uma imagem
+                                <>
+                                    <img
+                                        src={imagem}
+                                        alt=""
+                                        className="w-96 h-80" />
+                                    <label htmlFor="img">Imagem Selecionada</label>
+                                </>
+                            ) : (
+                                <label htmlFor="img">Selecione Sua Imagem</label> // Mensagem quando não há imagem
+                            )}
                             <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden' />
                         </div>
                         <div className="col-md-2">

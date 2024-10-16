@@ -23,8 +23,12 @@ const inativar = (id) => {
     return http.mainInstance.put(API_URL + `inativar/${id}`);
 };
 
+const ativar = (id) => {
+    return http.mainInstance.put(API_URL + `ativar/${id}`);
+};
+
 const marcarComoLida = (id) => {
-    return http.mainInstance.put(API_URL + `inativar/${id}`);
+    return http.mainInstance.put(API_URL + `marcarComoLida/${id}`);
 };
 
 const MensagemService = {
@@ -32,6 +36,7 @@ const MensagemService = {
     findById,
     create,
     inativar,
+    ativar,
     marcarComoLida,
 }
 
