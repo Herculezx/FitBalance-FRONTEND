@@ -8,7 +8,8 @@ export default {
     extend: {},
     gridTemplateColumns: {
       'custom': '1fr 4fr 1fr' ,
-      'customSobreNos': '0.1fr 1fr 0.1fr'
+      'customSobreNos': '0.1fr 1fr 0.1fr',
+      'faleConosco': '1fr 1fr'
     },
     colors: {
       transparent: 'transparent',

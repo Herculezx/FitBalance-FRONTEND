@@ -32,7 +32,7 @@ const FooterResponsive = () => {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/faleconosco">
                   <img src={email} className="w-10 mb-4 sm:mt-4" />
                 </a>
               </li>

@@ -33,6 +33,25 @@ const Exercicios = () => {
     }
   }, [usuario]);
 
+
+  const [isAtTop, setIsAtTop] = useState(false);
+  const handleScroll = () => {
+    const section = document.getElementById('minha-section');
+    if (section.getBoundingClientRect().top <= 0) {
+      setIsAtTop(true);
+    } else {
+      setIsAtTop(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   console.log(usuario);
   return (
     <div>
@@ -51,6 +70,20 @@ const Exercicios = () => {
           <h1 className="py-4 font-bold text-2xl">Modelos</h1>
         </div>
 
+        <section
+            id="minha-section"
+            className={`sticky top-0 flex justify-between ${isAtTop ? 'px-0' : 'px-32'} transition-all duration-300 ease-in-out items-center my-5`}
+        >
+            <div className="flex justify-center gap-5 bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
+                <a href="#iniciante">Iniciante</a>
+                <a href="#intermediario">Intermediário</a>
+                <a href="#avancado">Avançado</a>
+            </div>
+            <div className="bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
+                <a href="#salvar">Salvar</a>
+            </div>
+        </section>
+
         <form
           onSubmit={async (e) => {
             e.preventDefault();
@@ -58,17 +91,19 @@ const Exercicios = () => {
             console.log(a);
             alert("exercicios salvos");
           }}
-          className="mt-10 border-[1.5px] border-borda py-10 rounded-3xl"
+          className="mt-10  py-10 rounded-3xl"
         >
-          <div className="flex flex-row justify-evenly">
-            <div>
-              <div className="flex justify-center">
-                <label htmlFor="iniciante" className="font-bold text-2xl mb-4 underline underline-offset-8">
+          <div className="grid grid-cols-customSobreNos">
+
+
+            <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
+              <div className=" mb-20">
+                <label htmlFor="iniciante" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
                   Iniciante
                 </label>
               </div>
               <div className="">
-                <ul>
+                <ul id="iniciante" className="flex flex-wrap justify-center items-center gap-5">
                   {dados &&
                     dados
                       .filter(
@@ -86,17 +121,16 @@ const Exercicios = () => {
               </div>
             </div>
 
-            <div>
-              <div className="flex justify-center">
-                <label
-                  htmlFor="intermediario"
-                  className="font-bold text-2xl mb-4 underline underline-offset-8"
-                >
+
+
+            <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
+              <div className=" mb-20">
+                <label htmlFor="intermediario" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
                   Intermediário
                 </label>
               </div>
-              <div>
-                <ul>
+              <div className="">
+                <ul id="intermediario" className="flex flex-wrap justify-center items-center gap-5">
                   {dados &&
                     dados
                       .filter(
@@ -114,32 +148,38 @@ const Exercicios = () => {
               </div>
             </div>
 
-            <div>
-              <div className="flex justify-center">
-                <label htmlFor="avancado" className="font-bold text-2xl mb-4 underline underline-offset-8">
+
+
+            <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
+              <div className=" mb-20">
+                <label htmlFor="avancado" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
                   Avançado
                 </label>
               </div>
-              <ul>
-                {dados &&
-                  dados
-                    .filter(
-                      (Exercicios) =>
-                        Exercicios.nivel.toLowerCase() == "avançado"
-                    )
-                    .map((Exercicios) => (
-                      <CardExercicios
-                        Exercicios={Exercicios}
-                        marcados={marcados}
-                        setMarcados={setMarcados}
-                      />
-                    ))}
-              </ul>
+              <div className="">
+                <ul id="avancado" className="flex flex-wrap justify-center items-center gap-5">
+                  {dados &&
+                    dados
+                      .filter(
+                        (Exercicios) =>
+                          Exercicios.nivel.toLowerCase() == "avançado"
+                      )
+                      .map((Exercicios) => (
+                        <CardExercicios
+                          Exercicios={Exercicios}
+                          marcados={marcados}
+                          setMarcados={setMarcados}
+                        />
+                      ))}
+                </ul>
+              </div>
             </div>
+
           </div>
 
           <div className="flex justify-center items-center mt-10">
             <button
+              id="salvar"
               type="submit"
               className="bg-3d text-white text-xl py-2 px-10 rounded-xl border-solid border-2 border-borda font-bold hover:bg-borda duration-200 hover:underline hover:underline-offset-4"
             >
