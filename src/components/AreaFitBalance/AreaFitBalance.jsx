@@ -26,7 +26,7 @@ function AreaFitBalance() {
           <div className="my-10 flex flex-col items-center gap-3 justify-center border-y-2 border-white border-solid py-4">
             <img src={logo} className="mini:w-60 md:w-80 rounded-3xl border-solid border-2 border-borda shadow-[rgba(6,_24,_44,_0.4)_0px_0px_0px_2px,_rgba(6,_24,_44,_0.65)_0px_4px_6px_-1px,_rgba(255,_255,_255,_0.08)_0px_1px_0px_inset]"/>
               <p className="font-bold text-white text-lg"> Entre em nossas áreas </p>
-              <a className="bg-primaryColor font-bold text-white w-3/6 h-10 flex items-center justify-center rounded-full shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]  lg:w-full  md:w-4/12 " href={'/areas'}>Entrar</a>
+              <a className="bg-primaryColor font-bold text-white w-3/6 h-10 flex items-center justify-center rounded-full shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]  lg:w-full  md:w-4/12 " href={'/home'}>Entrar</a>
           </div>
           <div className="flex flex-col items-center gap-10 lg:justify-center">
             <h1 className="font-bold text-white underline underline-offset-[10px] text-xl lg:text-2xl">Área de Alimentação:</h1>

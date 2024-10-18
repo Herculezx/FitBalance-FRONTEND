@@ -2,6 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer"
 import UsuarioService from "../../services/UsuarioService";
+
+import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
+
 import logoG from "../../assets/images/fitLogoG.jpg"
 import styles from "../Login/Login.module.css";
 import "../../index.css"
@@ -66,12 +69,12 @@ const Login = () => {
 
     return (
         <div>
-            <Menu />
+            <MenuResponsive />
 
             <section className={styles.mainSection}>
 
                 <div className={styles.divLogo}>
-                    <img src={logoG}/>
+                    {/* <img src={logoG}/> */}
                 </div>
 
                 <div className={styles.divCont}>

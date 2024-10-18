@@ -3,6 +3,8 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 
+export const backendUrl = "http://localhost:8080/"
+
 const useRequisitar = (url, dependencias = []) => {
    const [carregando , setCarregando] = useState(true);
    const [dados , setDados] = useState(undefined);
@@ -12,7 +14,7 @@ const useRequisitar = (url, dependencias = []) => {
          const userJson = localStorage.getItem("user");
          const user = JSON.parse(userJson || '{}');
        const email = user.email
-       const response = await axios.get(`http://localhost:8080/${url}`,  { headers: {
+       const response = await axios.get(`${backendUrl}${url}`,  { headers: {
            "Content-type": "application/json",
            "logado": email
          }})

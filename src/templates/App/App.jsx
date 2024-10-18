@@ -15,11 +15,31 @@ import { useEffect } from 'react';
 
 function App() {
 
+  const path = useLocation().pathname;
+  const [logado, setLogado] = useState(null);
+
+
+  useEffect(() => {
+    setLogado(localStorage.getItem("user"))
+  }, [path])
+
   return (
     <>
       <MenuResponsive />
       <Header />
-      <AreaFitBalance />
+      {!(logado) && <AreaFitBalance />}
+
+      {(logado) &&
+        <>
+          <div className='flex justify-center items-center mt-20 '>
+            <a href={'/home'} className='bg-borda w-80 text-center text-white font-bold p-2 text-3xl rounded-2xl '>Ir para Home</a>
+          </div>
+        </>
+      }
+
+      {(logado) &&
+          <Sidebar />
+      }
       <CardImportancia />
       <FooterResponsive />
 

@@ -12,6 +12,7 @@ import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
 import useForm from "../../hooks/useForm"
 import useEnviar from "../../hooks/useEnviar"
+import obterArquivoPorId from "../../services/obterArquivoPorId"
 
 const UsuarioPerfil = () => {
 
@@ -24,7 +25,8 @@ const UsuarioPerfil = () => {
         nivelAcesso: "",
         dataNascimento: "",
         statusUsuario: "",
-        foto: null
+        fotoId: 0,
+        foto: { conteudo: [], extensao: "" },
     };
 
     const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
@@ -34,7 +36,16 @@ const UsuarioPerfil = () => {
 
     const { id } = useParams();
 
+    useEffect(() => {
+        (async () => {
+            if (usuario && usuario.fotoId) {
+                const arquivo = await obterArquivoPorId(usuario.fotoId)
+                setImagem(arquivo.base64)
+                mudar("foto", { id: arquivo.id, conteudo: arquivo.id, extensao: arquivo.extensao })
+            }
+        })()
 
+    }, [usuario])
 
 
     function salvarImagem(e) {
@@ -51,6 +62,7 @@ const UsuarioPerfil = () => {
             else {
                 console.log({ conteudo: Array.from(new Uint8Array(event.target?.result)) }.conteudo)
                 mudarDireto("foto", { conteudo: Array.from(new Uint8Array(event.target?.result)), extensao: `image/${extensao}` })
+                mudar("fotoId", 0)
             }
         }
         if (file) {
@@ -62,7 +74,8 @@ const UsuarioPerfil = () => {
 
     const { requisitar } = useEnviar((dados) => {
         if (dados.id == usuario.id) {
-
+            console.log(dados)
+            localStorage.setItem("user", JSON.stringify(dados))
         }
         navigate('/home')
     })
@@ -92,19 +105,19 @@ const UsuarioPerfil = () => {
                 <section >
                     <MenuResponsive />
                     <div className="flex flex-col items-center justify-center">
-                        <div>
-                            <h1 className="font-bold text-4xl mt-5">
-                                Suas informações
-                            </h1>
-                        </div>
-
-                        <section className="m-2 p-2 shadow-lg">
+                        <div className="flex items-center my-10 gap-4">
                             <button type="button" onClick={() => {
                                 navigate('/home')
                             }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
                                 <i className="bi bi-box-arrow-left // text-white"></i> Voltar
                             </button>
-                            <form className="row g-2 m-5 p-2 rounded-2 shadow" onSubmit={(e) => {
+                            <h1 className="font-bold text-4xl">
+                                Suas informações
+                            </h1>
+                        </div>
+
+                        <section className="w-4/5">
+                            <form className=" m-5 p-5 rounded-xl border-[1.5px] shadow" onSubmit={(e) => {
                                 e.preventDefault()
                                 console.log({ ...usuario, ...valores })
                                 console.log({ ...usuario })
@@ -112,51 +125,51 @@ const UsuarioPerfil = () => {
 
                             }} >
 
-                                <div className="col-md-5">
-                                    <label htmlFor="inputNome" className="form-label mb-1 fw-bold">Nome:</label>
-                                    <input type="text" className="form-control" id="inputNome" onChange={mudar("nome")}
-                                        defaultValue={usuario.nome} />
+                                <div className="flex justify-center">
+                                    {imagem ? ( // Condicional para mostrar a imagem apenas se houver uma imagem
+                                        <div className="flex flex-col items-center">
+                                            <h1 className="font-bold text-xl mb-4 text-white bg-bg-footer px-4 py-2 rounded-xl">Sua Imagem de Perfil</h1>
+                                            <img
+                                                src={imagem}
+                                                alt=""
+                                                className="w-52 h-32 lg:w-80 lg:h-52 text-center rounded-xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] border-1 mb-5" />
+                                        </div>
+                                    ) : (
+                                        <label htmlFor="img" className="cursor-pointer font-bold  p-2 w-56 mb-5 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-center border-b-2">Selecione Sua Imagem</label> // Mensagem quando não há imagem
+                                    )}
+                                    <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden' />
                                 </div>
 
-                                <div className="col-md-5">
-                                    <label htmlFor="inputEmail4" className="form-label mb-1 fw-bold">Email:</label>
-                                    <input type="email" className="form-control" id="inputEmail4" onChange={mudar("email")}
-                                        defaultValue={usuario.email} />
+                                <div className="flex flex-col gap-2 mb-4">
+                                    <div className="">
+                                        <label htmlFor="inputNome" className="form-label mb-1 fw-bold">Nome:</label>
+                                        <input type="text" className="form-control" id="inputNome" onChange={mudar("nome")}
+                                            defaultValue={usuario.nome} />
+                                    </div>
+
+                                    <div className="">
+                                        <label htmlFor="inputEmail4" className="form-label mb-1 fw-bold">Email:</label>
+                                        <input type="email" className="form-control" id="inputEmail4" onChange={mudar("email")}
+                                            defaultValue={usuario.email} />
+                                    </div>
+
+                                    <div>
+                                        <label htmlFor="dataNasc" className="form-label mb-1 fw-bold">Data de Nascimento:</label>
+                                        <input type="date" className="form-control" name="dataNasc" id="dataNasc" onChange={mudar("dataNascimento")} defaultValue={valores.dataNascimento} />
+                                    </div>
                                 </div>
 
-                                <div>
-                                    <label htmlFor="dataNasc">Data de Nascimento:</label>
-                                    <input type="date" name="dataNasc" id="dataNasc" onChange={mudar("dataNascimento")} defaultValue={valores.dataNascimento}/>
-                                </div>
-
-                                <div>
-                                    <a href={'/forgotpass'}>Quer Mudar Sua Senha?</a>
-                                </div>
-
-                                <div>
-                            {imagem ? ( // Condicional para mostrar a imagem apenas se houver uma imagem
-                                <>
-                                    <img
-                                        src={imagem}
-                                        alt=""
-                                        className="w-96 h-80" />
-                                    <label htmlFor="img">Imagem Selecionada</label>
-                                </>
-                            ) : (
-                                <label htmlFor="img">Selecione Sua Imagem</label> // Mensagem quando não há imagem
-                            )}
-                            <input onChange={salvarImagem} accept='image/*' type="file" id='img' className='hidden' />
-                        </div>
-
-
-                                <div className='pb-5 pt-4 flex justify-center items-center'>
+                                <div className='pb-5 pt-4 flex flex-col gap-4 justify-center items-center'>
                                     <button type="submit"
                                         className="btn btn-md btn-light text-borda text-lg font-bold px-8 duration-200 border-primaryColor border-2 border-solid ">
                                         <i className="bi bi-envelope-open me-2"></i>Salvar
                                     </button>
+                                    <div>
+                                        <a href={'/forgotpass'} className="font-bold text-md underline md:text-xl">Quer Mudar Sua Senha?</a>
+                                    </div>
                                 </div>
 
-                                <div className="col-12 mb-2 d-flex justify-content-between">
+                                <div className=" mb-2 d-flex justify-content-between">
                                 </div>
                             </form>
                         </section>

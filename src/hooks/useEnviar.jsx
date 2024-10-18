@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useState } from "react"
+import { backendUrl } from "./useRequisitar";
 
 export default function useEnviar(aoReceber=() => {}){
-    const basePath = "http://localhost:8080/"
     const [carregando, setCarregando] = useState(false);
    
      return {
@@ -11,7 +11,7 @@ export default function useEnviar(aoReceber=() => {}){
             const user = JSON.parse(userJson || '{}');
            const email = user.email
             setCarregando(true)
-            const requisicao = await axios.post(basePath + url , data, { headers: {
+            const requisicao = await axios.post(backendUrl + url , data, { headers: {
                 "Content-type": "application/json",
                 "logado": email
               }})

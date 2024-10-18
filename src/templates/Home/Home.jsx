@@ -4,11 +4,13 @@ import Sidebar from '../../components/Menu/Sidebar'
 
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
 
+import imgExercise from "../../assets/images/exercises.jpg"
 import imgAlimentacao from "../../assets/images/logo.png";
 
 import UsuarioService from "../../services/UsuarioService"
 import AcessoNegado from "./AcessoNegado"
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
+import Login from "../Login/Login";
 
 const Home = () => {
 
@@ -26,15 +28,15 @@ const Home = () => {
                             </h1>
                         </div>
                         {/* Div de Título da página Areas */}
-                        <div className="flex flex-col mt-10 md:flex-row md:justify-evenly  bg-3d ">
-                            <div className="flex flex-col items-center py-10 gap-10">
+                        <div className="flex flex-col mt-10 md:flex-row md:justify-between py-10  bg-3d ">
+                            <div className="flex flex-col items-center py-10 gap-10 lg:border-2 rounded-xl">
                                 <h1 className=" text-white font-bold text-3xl">Exercícios</h1>
                                 <img
-                                    src={imgAlimentacao}
+                                    src={imgExercise}
                                     alt=""
                                     className="w-72 h-44 rounded-2xl border-solid border-primaryColor border-3"
                                 />
-                                <p className="text-white font-semibold mx-20 text-center text-lg">
+                                <p className="text-white font-semibold sm:mx-5 lg:mx-0 text-center text-lg">
                                     Praticar atividade física regularmente ajuda no processo de
                                     emagrecimento e controle de peso, queimando calorias e mantendo a
                                     massa magra, melhorando a qualidade de vida.
@@ -47,14 +49,14 @@ const Home = () => {
                                 </a>
                             </div>
                             {/* Grid 1 */}
-                            <div className="flex flex-col items-center py-10 gap-10">
+                            <div className="flex flex-col items-center py-10 gap-10 lg:border-2 rounded-xl">
                                 <h1 className=" text-white font-bold text-3xl">Alimentação</h1>
                                 <img
                                     src={imgAlimentacao}
                                     alt=""
                                     className="w-72 h-44 rounded-2xl border-solid border-primaryColor border-3"
                                 />
-                                <p className="text-white font-semibold mx-20 text-center text-lg">
+                                <p className="text-white font-semibold sm:mx-5 lg:mx-0 text-center text-lg">
                                     Se alimentar de forma saudável é um papel essencial no
                                     desenvolvimento do corpo e no processo de ganho de massa muscular
                                     e no emagrecimento.
@@ -74,7 +76,7 @@ const Home = () => {
                     <Sidebar />
                     <FooterResponsive />
                 </div> :
-                <AcessoNegado />
+                <Login />
             }
         </>
     )

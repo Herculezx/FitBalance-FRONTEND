@@ -43,9 +43,9 @@ const Sidebar = () => {
 
                         <div className="flex justify-center items-center flex-col text-center bg-3d py-12 px-24 rounded-3xl gap-6 border-solid border-borda border-2">
 
-                            <img src={currentUser.foto_id ? `http://localhost:8080/arquivo/${currentUser.foto_id}` : perfil} alt="logo" className="mt-2 w-32 border-solid border-borda border-2 rounded-xl" />
+                                <img src={currentUser.fotoId ? `http://localhost:8080/arquivo/${currentUser.fotoId}` : perfil} alt="logo" className="mt-2 w-60 h-44 border-solid border-borda border-2 rounded-xl shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(53,224,105,0.15)]" />
 
-                            <span className="text-white font-bold text-lg">{currentUser.nome}</span>
+                                <span className="text-white font-bold text-lg bg-borda py-2 w-full rounded-xl ">{currentUser.nome}</span>
 
                         </div>
 
@@ -57,14 +57,14 @@ const Sidebar = () => {
 
                             <button type="button" onClick={() => editar(currentUser.id)}
                                 className="btn btn-sm btn-success py-2 w-2/6 mx-1 fw-bold h5 rounded shadow flex justify-center items-center gap-2 text-md text-white">
-                                Abrir <i className="bi bi-person-gear"></i>
+                                Perfil <i className="bi bi-person-gear"></i>
                             </button>
 
                         </div>
 
                     </form>
 
-                    <nav className="flex flex-row justify-center items-center // md:flex-wrap md:gap-12">
+                    <nav className="flex flex-row justify-center flex-wrap items-center ">
                         <Link className="underline mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
                         <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>
                         {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
