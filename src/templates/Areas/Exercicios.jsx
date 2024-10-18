@@ -71,18 +71,19 @@ const Exercicios = () => {
         </div>
 
         <section
-            id="minha-section"
-            className={`sticky top-0 flex justify-between ${isAtTop ? 'px-0' : 'px-32'} transition-all duration-300 ease-in-out items-center my-5`}
+          id="minha-section"
+          className={`sticky top-0 gap-3 flex flex-col sm:flex-row justify-between items-center ${isAtTop ? 'px-4' : 'px-8'} transition-all duration-300 ease-in-out my-5`}
         >
-            <div className="flex justify-center gap-5 bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
-                <a href="#iniciante">Iniciante</a>
-                <a href="#intermediario">Intermediário</a>
-                <a href="#avancado">Avançado</a>
-            </div>
-            <div className="bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
-                <a href="#salvar">Salvar</a>
-            </div>
+          <div className="flex justify-center gap-5 bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
+            <a href="#iniciante">Iniciante</a>
+            <a href="#intermediario">Intermediário</a>
+            <a href="#avancado">Avançado</a>
+          </div>
+          <div className="bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
+            <a href="#salvar">Salvar</a>
+          </div>
         </section>
+
 
         <form
           onSubmit={async (e) => {
@@ -93,12 +94,12 @@ const Exercicios = () => {
           }}
           className="mt-10  py-10 rounded-3xl"
         >
-          <div className="grid grid-cols-customSobreNos">
+          <div className="md:grid md:grid-cols-customSobreNos">
 
 
             <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
               <div className=" mb-20">
-                <label htmlFor="iniciante" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
+                <label htmlFor="iniciante" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-24 w-full rounded-full mb-4 underline underline-offset-8">
                   Iniciante
                 </label>
               </div>
@@ -125,7 +126,7 @@ const Exercicios = () => {
 
             <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
               <div className=" mb-20">
-                <label htmlFor="intermediario" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
+                <label htmlFor="intermediario" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-24 w-full rounded-full mb-4 underline underline-offset-8">
                   Intermediário
                 </label>
               </div>
@@ -152,7 +153,7 @@ const Exercicios = () => {
 
             <div className="col-start-2 flex flex-col items-center border-1 border-borda rounded-3xl p-5">
               <div className=" mb-20">
-                <label htmlFor="avancado" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-40 rounded-full mb-4 underline underline-offset-8">
+                <label htmlFor="avancado" className="font-bold text-[2rem] bg-bg-footer text-white py-2 px-24 w-full rounded-full mb-4 underline underline-offset-8">
                   Avançado
                 </label>
               </div>
@@ -187,6 +188,7 @@ const Exercicios = () => {
             </button>
           </div>
         </form>
+
       </section>
       <Sidebar />
       <FooterResponsive />

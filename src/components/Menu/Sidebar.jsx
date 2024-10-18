@@ -9,7 +9,6 @@ const Sidebar = () => {
     const userJson = localStorage.getItem("user");
     const user = JSON.parse(userJson || '{}');
     const currentUser = UsuarioService.getCurrentUser();
-    const currentUserNow = UsuarioService.getCurrentUserNow();
 
     const navigate = useNavigate();
 
@@ -69,7 +68,7 @@ const Sidebar = () => {
                         <Link className="underline mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
                         <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>
                         {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
-                        {user.nivelAcesso === "USER" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>}
+                        <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>
                         {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}
                     </nav>
                 </div> :
