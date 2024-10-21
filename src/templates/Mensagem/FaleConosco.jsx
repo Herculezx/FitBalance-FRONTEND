@@ -107,7 +107,7 @@ const FaleConosco = () => {
                         </>
                     ) : (
                         <>
-                            <div className="flex flex-col lg:flex-row gap-5">
+                            <div className="flex flex-col mt-20 lg:flex-row gap-5">
 
                                 <div className="flex justify-center flex-col items-center">
                                     <div className="w-full flex justify-center my-5">

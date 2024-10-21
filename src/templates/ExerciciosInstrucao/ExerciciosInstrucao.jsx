@@ -18,7 +18,7 @@ export const ExerciciosInstrucao = () => {
         <div className='flex flex-col lg:flex-row gap-4 justify-center my-5 w-full'>
           <div className='flex w-full lg:w-1/3 items-center justify-center'>
             <ButtonReUse
-              nameBtn="sair"
+              nameBtn="Voltar"
               link={'/meustreinos'}
             />
           </div>

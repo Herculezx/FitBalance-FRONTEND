@@ -11,13 +11,48 @@ import imgAlvo from "../../assets/images/imgAlvo.jpg"
 import Footer from "../../components/Footer/Footer";
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive";
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function SobreNos() {
+
+    const navigate = useNavigate();
+
+    const [isAtTop, setIsAtTop] = useState(false);
+    const handleScroll = () => {
+      const section = document.getElementById('minha-section');
+      if (section.getBoundingClientRect().top <= 0) {
+        setIsAtTop(true);
+      } else {
+        setIsAtTop(false);
+      }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+    
     return (
         <div>
             <MenuResponsive />
 
             <section className="mt-10">
+
+                <div id="minha-section"
+                    className={`sticky top-0 flex flex-row  bg-white justify-between md:justify-center items-center ${isAtTop ? 'md:gap-52 , lg:gap-96 , py-2 , shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]' : 'gap-3'} transition-all duration-300 ease-in-out my-5`}>
+                    <div>
+                        <button type="button" onClick={() => {
+                            navigate('/home')
+                        }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
+                            <i className="bi bi-box-arrow-left // text-white"></i> Voltar
+                        </button>
+                    </div>
+                    <a href="#" className='text-center font-bold underline lg:text-2xl'>Seja Bem Vindo a Sobre Nós!</a>
+                </div>
 
                 <section className="flex flex-col lg:grid lg:grid-cols-customSobreNos lg:justify-items-center">
 

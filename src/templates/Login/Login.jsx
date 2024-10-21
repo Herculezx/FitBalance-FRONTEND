@@ -72,9 +72,9 @@ const Login = () => {
 
             <section className="mt-10 flex flex-col lg:flex-row justify-evenly items-center">
 
-                <div className="w-full">
+                <div className="w-full hidden lg:flex lg:justify-end">
                     <img 
-                     className="w-[35rem] h-full hidden lg:block"   
+                     className="w-[35rem] xl:w-[50rem] h-full"   
                      src={vetorLogin} alt="nao suportado"/>
                 </div>
 

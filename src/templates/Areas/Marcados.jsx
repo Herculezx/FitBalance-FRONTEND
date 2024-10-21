@@ -21,7 +21,7 @@ const Marcados = () => {
     <div>
       <MenuResponsive />
 
-      <section className='flex flex-col items-center mt-10'>
+      <section className='flex flex-col items-center my-20'>
         <div className='flex flex-col items-center gap-4 w-4/5 lg:flex-row lg:mb-20'>
           <div className='w-full lg:w-1/3 flex justify-center items-center'>
             <ButtonReUse

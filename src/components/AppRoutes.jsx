@@ -33,7 +33,7 @@ import { ExerciciosInstrucao } from "../templates/ExerciciosInstrucao/Exercicios
 const AppRoutes = () => {
   const [bloqueado , setBloqueado] = useState(false)
   const path = useLocation().pathname
-  const RotasProtegidas = ['/areas' , '/exercicios' , '/mensagem' , '/mensagemler/:id']
+  const RotasProtegidas = ['/areas' , '/exercicios' , '/mensagem' , '/mensagemler/:id' , '/home' , '/faleconosco']
   const RotasAdmin = ['/exerciciosForm' , '/usuario' , '/usuariolista' , '/usuarionovo' , '/usuarioeditar/:id' , '/usuarioperfil/:id']
   const Navigate = useNavigate()
   const Logado = localStorage.getItem("user")

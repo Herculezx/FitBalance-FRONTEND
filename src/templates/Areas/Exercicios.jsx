@@ -64,7 +64,7 @@ const Exercicios = () => {
         <div className="flex flex-col items-center">
           <div className="text-center">
             {currentUser ? <h1 className="font-bold text-2xl mt-10 underline underline-offset-8 ">Bem vindo! {currentUser.nome} </h1> : <></>}
-            <h1 className="mt-5 font-bold text-2xl">Exercícios</h1>
+            <h1 id="inicio" className="mt-5 font-bold text-2xl">Exercícios</h1>
             <p className="mt-2 font-semibold text-3d text-opacity-85 text-lg">
               Praticar exercícios é essencial para se ter uma boa qualidade de
               vida!
@@ -75,15 +75,16 @@ const Exercicios = () => {
 
         <section
           id="minha-section"
-          className={`sticky top-0 gap-3 flex flex-col sm:flex-row justify-between items-center ${isAtTop ? 'px-4' : 'px-8'} transition-all duration-300 ease-in-out my-5`}
+          className={`sticky top-0 gap-3 flex flex-col md:flex-row justify-between items-center ${isAtTop ? 'px-4' : 'px-8'} transition-all duration-300 ease-in-out my-5`}
         >
           <div className="flex justify-center gap-5 bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
             <a href="#iniciante">Iniciante</a>
             <a href="#intermediario">Intermediário</a>
             <a href="#avancado">Avançado</a>
           </div>
-          <div className="bg-3d px-5 py-2 text-white rounded-xl rounded-t-none">
-            <a href="#salvar">Salvar</a>
+          <div className="bg-3d px-5 py-2 text-white rounded-xl rounded-t-none flex flex-col gap-3 md:flex-row">
+            <a href="#inicio" className="md:px-5">Início</a>
+            <a href="#salvar" className="md:px-5">Salvar</a>
           </div>
         </section>
 

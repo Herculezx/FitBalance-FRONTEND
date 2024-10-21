@@ -128,10 +128,10 @@ const Cadastro = () => {
 
                 </div>
 
-                <div className="w-full">
-                    <img
-                        className="w-[35rem] h-full hidden lg:block"
-                        src={vetorLogin} alt="nao suportado" />
+                <div className="w-full hidden lg:flex lg:justify-end">
+                    <img 
+                     className="w-[35rem] xl:w-[47rem] h-full"   
+                     src={vetorLogin} alt="nao suportado"/>
                 </div>
             </section>
 
