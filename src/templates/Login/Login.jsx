@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Footer from "../../components/Footer/Footer"
 import UsuarioService from "../../services/UsuarioService";
 
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 
-import logoG from "../../assets/images/fitLogoG.jpg"
+import vetorLogin from "../../assets/images/vetorLogin.jpg"
 import styles from "../Login/Login.module.css";
 import "../../index.css"
 import "../App/App.css"
 
-import Menu from "../../components/MenuAlt/MenuAlt"
+import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
 
 const Login = () => {
 
@@ -71,33 +70,37 @@ const Login = () => {
         <div>
             <MenuResponsive />
 
-            <section className={styles.mainSection}>
+            <section className="mt-10 flex flex-col lg:flex-row justify-evenly items-center">
 
-                <div className={styles.divLogo}>
-                    {/* <img src={logoG}/> */}
+                <div className="w-full">
+                    <img 
+                     className="w-[35rem] h-full hidden lg:block"   
+                     src={vetorLogin} alt="nao suportado"/>
                 </div>
 
-                <div className={styles.divCont}>
+                <div className="flex flex-col gap-5 items-center shadow py-5 rounded-xl sm:w-4/5 lg:mr-16 xl:mr-24">
 
-                    <div className={styles.divTitleLogin}>
-                        <h2>Entre em sua conta!</h2>
-                        <a href={'/cadastro'}><span>Não tem uma conta?</span> Crie agora! </a>
+                    <div className="flex flex-col items-center font-bold text-2xl gap-4">
+                        <h2 className="text-xl text-center text-wrap bg-3d rounded-3xl p-2 text-bd w-4/5">Bem Vindo de Volta, <span className="text-primaryColor underline"> Entre em sua conta!</span> </h2>
+                        <a href={'/cadastro'} className="text-borda font-bold"> Não tem uma conta? <span className="text-primaryColor underline text-2xl">Crie agora!</span> </a>
                     </div>
 
-                    <div>
-                        <form action="" onSubmit={handleSubmit} className={styles.divForm}>
-                            <div className={styles.divInp}>
-                                 <label htmlFor="email" >Email:</label>
-                                 <input type="email" id="email" className={styles.input} placeholder="exemplo@gmail.com"
+                    <div className=" w-4/5">
+                        <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-2">
+                                 <label htmlFor="email" className="font-bold text-xl">Email:</label>
+                                 <input type="email" id="email" placeholder="exemplo@gmail.com"
                                  name="email"
+                                 className="form-control text-center fw-medium shadow" 
                                  value={formData.email || ""}
                                  onChange={handleChange} />
                             </div>
     
-                            <div className={styles.divInp}>
-                                 <label htmlFor="password" >Senha:</label>
-                                 <input type="password" id="password"  className={styles.input} placeholder="******"
+                            <div className="flex flex-col gap-2">
+                                 <label htmlFor="password" className="font-bold text-xl">Senha:</label>
+                                 <input type="password" id="password" placeholder="******"
                                  name="senha"
+                                 className="form-control text-center fw-medium shadow" 
                                  value={formData.senha || ""}
                                  onChange={handleChange} />
                             </div>
@@ -106,14 +109,14 @@ const Login = () => {
                                 {message}
                             </div>
 
-                            <div className={styles.divBtn}>
-                                 <button type="button" onClick={backto}> Cancelar </button>
-                                 <button type="submit"> Entrar </button>
+                            <div className="flex justify-evenly">
+                                 <button type="submit" className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"> Entrar </button>
+                                 <button type="button" onClick={backto} className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"> Cancelar </button>
                             </div>
 
-                            <div className={styles.divEsq}>
-                                <p>Esqueceu a senha?
-                                    <Link to={'/forgotpass'}> Clique aqui.</Link>
+                            <div className="flex justify-center">
+                                <p className="font-bold text-md">Esqueceu a senha?
+                                    <Link className="underline" to={'/forgotpass'}> Clique aqui.</Link>
                                 </p>
                             </div>
                         </form>
@@ -123,7 +126,7 @@ const Login = () => {
 
             </section>
             
-            <Footer />
+            <FooterResponsive />
 
         </div>
     )

@@ -1,89 +1,123 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../../assets/images/system-logo_128_x_128.png';
-import styles from "../Login/Login.module.css";
+import logo from "../../assets/images/system-logo_128_x_128.png";
 import { useState } from "react";
-import useEnviar from "../../hooks/useEnviar"
-import useForm from "../../hooks/useForm"
-
+import useEnviar from "../../hooks/useEnviar";
+import useForm from "../../hooks/useForm";
+import MenuResponsive from "../../components/MenuResponsive/MenuResponsive";
+import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
 
 const LoginForgotPass = () => {
-    const [parte , setParte] = useState(0);
-    const [codigo, setCodigo] = useState()
-    const [ conta , setConta ] = useState()
-    const { valores, mudar  } = useForm({ email: "", codigo: "", senha: "" })
+    const [parte, setParte] = useState(0);
+    const [codigo, setCodigo] = useState();
+    const [conta, setConta] = useState();
+    const { valores, mudar } = useForm({ email: "", codigo: "", senha: "" });
     const navigate = useNavigate();
-    const { requisitar } = useEnviar()
+    const { requisitar } = useEnviar();
 
     const goto = () => {
         navigate("/");
-    }
+    };
 
     const backto = () => {
         navigate("/");
-    }
-
+    };
 
     return (
-        <div className="container">
-            <form action="" className="login-form">
-                {parte == 0 && <div>
-                    <h1>informe o email</h1>
-                        <label htmlFor="email" className="form-label mb-0 fw-bold">Email:</label>
-                        <input onChange={mudar("email")} value={valores.email} type="email" id="email" className="form-control text-center fw-medium shadow" />
-                        <button type="button" onClick={async () => {
-                            const resposta = await requisitar(`usuario/codigo/${valores.email}/`)
+        <div>
+            <MenuResponsive />
+            <div>
+                <div className="flex justify-center items-center w-full my-20">
+                    <form action="" className="border-[1.5px] rounded-xl p-5 flex flex-col">
+                        {parte == 0 && (
+                            <div className="flex flex-col gap-4">
+                                <h1 className="font-bold text-xl bg-bg-footer p-2 rounded-xl text-bd">informe seu email para Verificação</h1>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="email" className="form-label mb-0 fw-bold text-xl">
+                                        Email:
+                                    </label>
+                                    <input
+                                        onChange={mudar("email")}
+                                        value={valores.email}
+                                        type="email"
+                                        id="email"
+                                        className="form-control text-center fw-medium shadow"
+                                    />
+                                </div>
+                                <div className="flex justify-center my-5">
+                                    <button
+                                        className=" bg-3d py-2 w-2/5 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-1/2 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                        type="button"
+                                        onClick={async () => {
+                                            const resposta = await requisitar(
+                                                `usuario/codigo/${valores.email}/`
+                                            );
 
-                            console.log(resposta)
-                            setCodigo(resposta.codigo)
-                            setConta(resposta.conta)
-                            setParte(1)
-                        }} >proximo</button>
-                    </div>}
-                    {parte == 1 && <div>
-                        <label htmlFor="codInput">Código que foi enviado</label>
-                        <input onChange={mudar("codigo")} type="text" name="codInp" id="codInp" />
-                        <button type="button" onClick={() => {
-                            if (valores.codigo == codigo) {
-                                setParte(2)
-                            }
-                        }}>proximo</button>
-                        </div>}
-                    {parte == 2 && <div>
-                        <div>
-                            <input type="password" name="" id="" onChange={mudar("senha")}/>
-                            <button onClick={async() => {
-                                await requisitar("usuario/codigo/", {senha: valores.senha , conta})
-                                navigate(`/login`)
-                            }} type="button">
-                                Salvar Senha Nova
-                            </button>
-                        </div>
-                        </div>}
-                <div className="login-logo">
-                    <img src={logo} alt="logo" />
+                                            console.log(resposta);
+                                            setCodigo(resposta.codigo);
+                                            setConta(resposta.conta);
+                                            setParte(1);
+                                        }}
+                                    >
+                                        Enviar Código
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                        {parte == 1 && (
+                            <div className="flex flex-col gap-5 items-center">
+                                <div className="flex flex-col gap-3">
+                                    <label htmlFor="codInput" className="font-bold text-xl">Insira o código que foi enviado</label>
+                                    <input
+                                        onChange={mudar("codigo")}
+                                        type="text"
+                                        name="codInp"
+                                        id="codInp"
+                                        className="form-control text-center fw-medium shadow"
+                                    />
+                                </div>
+                                <button
+                                    className=" bg-3d py-2 w-2/5 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-1/2 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                    type="button"
+                                    onClick={() => {
+                                        if (valores.codigo == codigo) {
+                                            setParte(2);
+                                        }
+                                    }}
+                                >
+                                    Verificar
+                                </button>
+                            </div>
+                        )}
+                        {parte == 2 && (
+                            <div>
+                                <div className="flex flex-col items-center gap-5">
+                                    <div className="flex flex-col gap-4">
+                                        <label htmlFor="novaSenha" className="font-bold text-xl">Insira sua Nova Senha!</label>
+                                        <input className="form-control text-center fw-medium shadow" type="password" name="novaSenha" id="novaSenha" onChange={mudar("senha")} />
+                                    </div>
+
+                                    <button
+                                        className=" bg-3d py-2 w-3/4 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-[90%] duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                        onClick={async () => {
+                                            await requisitar("usuario/codigo/", {
+                                                senha: valores.senha,
+                                                conta,
+                                            });
+                                            navigate(`/login`);
+                                        }}
+                                        type="button"
+                                    >
+                                        Salvar Senha Nova
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </form>
                 </div>
-                <h5 className="text-center">Recuperação de Senha</h5>
-                <div className="my-3">
-                </div>
-                <div className="d-flex flex-row-reverse mt-1">
-                    <p className="fw-bold fst-italic opacity-75 me-1">Acessar o sistema:
-                        <Link to={'/login'}> Clique aqui.</Link>
-                    </p>
-                </div>
-                <div className="d-flex justify-content-center my-1 d-none" id="infos">
-                    <p className="fw-bold fst-italic text-danger">
-                        Dados Incorretos!!!
-                    </p>
-                </div>
-                <div className="d-flex justify-content-around mb-3 mt-2">
-                    <button className="btn btn-warning fw-medium shadow" type="button"
-                        onClick={backto}>Cancelar</button>
-                    <button className="btn btn-success fw-medium shadow" type="submit"
-                        onClick={goto} >Solicitar Nova Senha</button>
-                </div>
-            </form>
+            </div>
+            <FooterResponsive />
         </div>
-    )
-}
+    );
+};
 
-export default LoginForgotPass
+export default LoginForgotPass;

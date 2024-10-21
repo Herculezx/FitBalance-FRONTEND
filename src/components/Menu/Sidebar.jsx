@@ -51,12 +51,12 @@ const Sidebar = () => {
 
                         <div className="flex flex-row justify-center items-center gap-3">
 
-                            <button className="btn btn-sm bg-3d py-2 w-2/6 mx-1 fw-bold h5 rounded shadow flex justify-center items-center gap-2 text-md text-white">
+                            <button className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white">
                                 <i className="bi bi-box-arrow-left // text-white"></i> Sair
                             </button>
 
                             <button type="button" onClick={() => editar(currentUser.id)}
-                                className="btn btn-sm btn-success py-2 w-2/6 mx-1 fw-bold h5 rounded shadow flex justify-center items-center gap-2 text-md text-white">
+                                className="bg-primaryColor py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-hover-check hover:border-l-bg-footer hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white">
                                 Perfil <i className="bi bi-person-gear"></i>
                             </button>
 
@@ -66,7 +66,8 @@ const Sidebar = () => {
 
                     <nav className="flex flex-row justify-center flex-wrap items-center ">
                         <Link className="underline mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
-                        <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>
+                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>}
+                        {user.nivelAcesso === "USER" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Minhas Mensagens</Link>}
                         {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
                         <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>
                         {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}

@@ -107,7 +107,7 @@ const UsuarioPerfil = () => {
                     <div className="flex flex-col items-center justify-center">
                         <div className="flex items-center my-10 gap-4">
                             <button type="button" onClick={() => {
-                                navigate('/home')
+                                navigate(-1)
                             }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
                                 <i className="bi bi-box-arrow-left // text-white"></i> Voltar
                             </button>
@@ -116,8 +116,8 @@ const UsuarioPerfil = () => {
                             </h1>
                         </div>
 
-                        <section className="w-4/5">
-                            <form className=" m-5 p-5 rounded-xl border-[1.5px] shadow" onSubmit={(e) => {
+                        <section className="w-full lg:flex lg:justify-center">
+                            <form className=" m-5 p-5 rounded-xl border-[1.5px] lg:w-4/5 shadow" onSubmit={(e) => {
                                 e.preventDefault()
                                 console.log({ ...usuario, ...valores })
                                 console.log({ ...usuario })
@@ -127,12 +127,13 @@ const UsuarioPerfil = () => {
 
                                 <div className="flex justify-center">
                                     {imagem ? ( // Condicional para mostrar a imagem apenas se houver uma imagem
-                                        <div className="flex flex-col items-center">
-                                            <h1 className="font-bold text-xl mb-4 text-white bg-bg-footer px-4 py-2 rounded-xl">Sua Imagem de Perfil</h1>
+                                        <div className="flex flex-col items-center gap-5">
+                                            <h1 className="font-bold text-xl text-white bg-bg-footer px-4 py-2 rounded-xl">Sua Imagem de Perfil</h1>
                                             <img
                                                 src={imagem}
                                                 alt=""
-                                                className="w-52 h-32 lg:w-80 lg:h-52 text-center rounded-xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] border-1 mb-5" />
+                                                className="w-52 h-32 lg:w-80 lg:h-52 text-center rounded-xl shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] border-1" />
+                                            <label htmlFor="img" className="cursor-pointer font-bold  p-2 w-56 mb-5 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-center border-b-2">Troque sua Imagem</label>
                                         </div>
                                     ) : (
                                         <label htmlFor="img" className="cursor-pointer font-bold  p-2 w-56 mb-5 rounded-lg shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] text-center border-b-2">Selecione Sua Imagem</label> // Mensagem quando não há imagem

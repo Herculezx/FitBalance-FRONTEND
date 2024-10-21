@@ -57,6 +57,9 @@ const Exercicios = () => {
     <div>
       <MenuResponsive />
 
+      <Sidebar />
+
+
       <section>
         <div className="flex flex-col items-center">
           <div className="text-center">
@@ -190,7 +193,6 @@ const Exercicios = () => {
         </form>
 
       </section>
-      <Sidebar />
       <FooterResponsive />
     </div>
   );

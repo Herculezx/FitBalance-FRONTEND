@@ -22,7 +22,7 @@ export default {
       'primaryColor': '#01D87D' ,
       'bg-footer': '#0E1D1B',
       'gray-300': '#00160c',
-      'hover-check': '#005632' ,
+      'hover-check': '#00ab63' ,
     },
 
     screens: {
