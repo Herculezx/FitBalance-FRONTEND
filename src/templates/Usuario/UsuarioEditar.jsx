@@ -32,37 +32,7 @@ const UsuarioEditar = () => {
 
     const { id } = useParams();
 
-    const _dbRecords = useRef(true);
     const [imagem, setImagem] = useState("");
-    const [formData, setFormData] = useState({});
-    const [successful, setSuccessful] = useState(false);
-    const [message, setMessage] = useState();
-
-    const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setFormData(formData => ({ ...formData, [name]: value }));
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSuccessful(false);
-
-        UsuarioService.inativar(id).then(
-            (response) => {
-                setUsuario(response.data.message);
-                setSuccessful(true);
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                })
-                Navigate('/usuarioslista');
-            }, (error) => {
-                const usuario = error.response.data.message;
-                setUsuario(usuario);
-            }
-        )
-    }
 
 
 

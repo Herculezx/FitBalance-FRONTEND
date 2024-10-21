@@ -62,6 +62,10 @@ const alterarSenha = (id, data) => {
 const inativar = (id, data) => {
   return http.mainInstance.put(API_URL + `inativar/${id}`);
 };
+const inativoPeloUsuario = (id, data) => {
+  return http.mainInstance.put(API_URL + `inativoPeloUsuario/${id}`);
+};
+
 const reativar = (id, data) => {
   return http.mainInstance.put(API_URL + `reativar/${id}`);
 };
@@ -97,6 +101,7 @@ const UsuarioService = {
   alterarSenha,
   findByNome,
   inativar,
+  inativoPeloUsuario,
   reativar,
 };
 

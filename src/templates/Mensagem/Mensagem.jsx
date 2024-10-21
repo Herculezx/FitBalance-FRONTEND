@@ -41,38 +41,45 @@ const Mensagem = () => {
                             }
                         </div>
                     </div>
-                    <div className="table-wrapper">
-                        <table className="table table-striped table-hover">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full bg-gray-50 border border-gray-200">
                             <thead>
-                                <tr>
-                                    {user.nivelAcesso === "ADMIN" && <th scope="col">ID</th>}
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Emissor</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Abrir</th>
+                                <tr className="bg-hover-check text-white text-center">
+                                    {user.nivelAcesso === "ADMIN" &&
+                                        <th className="px-5 py-3 border-b">ID</th>}
+                                    <th className="px-5 py-3 border-b">Data</th>
+                                    <th className="px-5 py-3 border-b">Emissor</th>
+                                    <th className="px-5 py-3 border-b">Email</th>
+                                    <th className="px-5 py-3 border-b">Status</th>
+                                    <th className="px-5 py-3 border-b">Abrir</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {mensagens?.map((mensagem) => (
-                                    <tr key={mensagem.id}>
-                                        {user.nivelAcesso === "ADMIN" && <td scope="row">{mensagem.id}</td>}
-                                        <td>{mensagem.dataMensagem}</td>
-                                        <td>{mensagem.emissorMensagem}</td>
-                                        <td>{mensagem.email}</td>
-                                        <td>{mensagem.statusMensagem}</td>
-                                        <td>
-                                            <button type="button" onClick={() => lerMensagem(mensagem.id)}
-                                                className="btn btn-sm btn-warning">
-                                                <i className="bi bi-envelope-open me-2"></i>Abrir
+                                {mensagens?.map((mensagem, index) => (
+                                    <tr
+                                        key={mensagem.id}
+                                        className={`hover:bg-tr text-center transition duration-150 ease-in-out ${index % 2 === 0 ? 'bg-bd' : 'bg-gray-300'}`}
+                                    >
+                                        {user.nivelAcesso === "ADMIN" && <td className="px-5 py-4 border-b border font-semibold">{mensagem.id}</td>}
+                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.dataMensagem}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.emissorMensagem}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.email}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.statusMensagem}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">
+                                            <button
+                                                type="button"
+                                                onClick={() => lerMensagem(mensagem.id)}
+                                                className="bg-green-500 border-[1.5px] font-bold border-bg-footer text-white px-4 py-2 rounded-xl hover:bg-hover-check transition duration-300 ease-in-out"
+                                            >
+                                                <i className="bi bi-envelope-open mr-2"></i>Abrir
                                             </button>
                                         </td>
-
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
                     </div>
+
                 </section>
 
             </div>

@@ -31,7 +31,7 @@ const UsuarioPerfil = () => {
 
     const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
     const [usuario, setUsuario] = useState(objectValues);
-
+    const [successful, setSuccessful] = useState(false);
     const [imagem, setImagem] = useState("");
 
     const { id } = useParams();
@@ -41,12 +41,31 @@ const UsuarioPerfil = () => {
             if (usuario && usuario.fotoId) {
                 const arquivo = await obterArquivoPorId(usuario.fotoId)
                 setImagem(arquivo.base64)
-                mudar("foto", { id: arquivo.id, conteudo: arquivo.id, extensao: arquivo.extensao })
+                mudarDireto("foto", { id: arquivo.id, conteudo: arquivo.conteudo, extensao: arquivo.extensao })
             }
         })()
 
     }, [usuario])
 
+    const inativoPeloUsuario = () => {
+        setSuccessful(false);
+
+        UsuarioService.inativoPeloUsuario(id).then(
+            (response) => {
+                setUsuario(response.data.message);
+                setSuccessful(true);
+                UsuarioService.logout();
+                navigate('/');
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                })
+            }, (error) => {
+                const usuario = error.response.data.message;
+                setUsuario(usuario);
+            }
+        )
+    }
 
     function salvarImagem(e) {
         const file = e.target?.files[0] ?? ""
@@ -164,6 +183,9 @@ const UsuarioPerfil = () => {
                                     <button type="submit"
                                         className="btn btn-md btn-light text-borda text-lg font-bold px-8 duration-200 border-primaryColor border-2 border-solid ">
                                         <i className="bi bi-envelope-open me-2"></i>Salvar
+                                    </button>
+                                    <button type="button" className="btn btn-warning" onClick={() => inativoPeloUsuario()}>
+                                        Deletar Minha Conta!
                                     </button>
                                     <div>
                                         <a href={'/forgotpass'} className="font-bold text-md underline md:text-xl">Quer Mudar Sua Senha?</a>

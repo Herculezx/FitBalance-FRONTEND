@@ -34,31 +34,31 @@ const UsuariosLista = () => {
             </div>
             <div className="mt-10">
                 <section className="mx-5 p-2 shadow-lg">
-                    <div className="table-wrapper">
-                        <table className="table table-striped table-hover">
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full bg-gray-50 border border-gray-200">
                             <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Acesso</th>
-                                    <th scope="col">Data de Nascimento</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Abrir</th>
+                                <tr className="bg-hover-check text-white text-center">
+                                    <th className="px-5 py-3 border-b">ID</th>
+                                    <th className="px-5 py-3 border-b">Nome</th>
+                                    <th className="px-5 py-3 border-b">Email</th>
+                                    <th className="px-5 py-3 border-b">Acesso</th>
+                                    <th className="px-5 py-3 border-b">Data de Nascimento</th>
+                                    <th className="px-5 py-3 border-b">Status</th>
+                                    <th className="px-5 py-3 border-b">Abrir</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {usuarios?.map((usuario) => (
-                                    <tr className="" key={usuario.id}>
-                                        <td>{usuario.id}</td>
-                                        <td>{usuario.nome}</td>
-                                        <td>{usuario.email}</td>
-                                        <td>{usuario.nivelAcesso}</td>
-                                        <td>{usuario.dataNascimento}</td>
-                                        <td>{usuario.statusUsuario}</td>
+                                {usuarios?.map((usuario, index) => (
+                                    <tr key={usuario.id} className={`hover:bg-tr text-center transition duration-150 ease-in-out ${index % 2 === 0 ? 'bg-bd' : 'bg-gray-300'}`}>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.id}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.nome}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.email}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.nivelAcesso}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.dataNascimento}</td>
+                                        <td className="px-5 py-4 border-b border font-semibold">{usuario.statusUsuario}</td>
                                         <td>
                                             <button onClick={() => editar(usuario.id)}
-                                                className="btn btn-sm btn-warning rounded">
+                                                className="bg-green-500 border-[1.5px] font-bold border-bg-footer text-white px-4 py-2 rounded-xl hover:bg-hover-check transition duration-300 ease-in-out">
                                                 <i className="bi bi-envelope-open"> Abrir</i>
                                             </button>
                                         </td>

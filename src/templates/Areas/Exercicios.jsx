@@ -9,8 +9,10 @@ import Sidebar from "../../components/Menu/Sidebar";
 import { useEffect } from "react";
 import CardExercicios from "../../components/CardExercicios/CardExercicios";
 import UsuarioService from "../../services/UsuarioService";
+import { useNavigate } from "react-router-dom";
 
 const Exercicios = () => {
+  const navigate = useNavigate()
   const {
     carregando,
     dados,
@@ -94,7 +96,8 @@ const Exercicios = () => {
             e.preventDefault();
             const a = await requisitar("exercicios/marcar", marcados);
             console.log(a);
-            alert("exercicios salvos");
+            navigate('/home')
+            // alert("exercicios salvos");
           }}
           className="mt-10  py-10 rounded-3xl"
         >

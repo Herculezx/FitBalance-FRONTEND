@@ -153,6 +153,11 @@ const MensagemLer = () => {
                                 value={mensagem.email || ''} />
                         </div>
 
+                        <div>
+                            <label htmlFor="inputTel" className="form-label mb-1 fw-bold">Telefone</label>
+                            <input type="text" name="" id="inputTel" className="form-control" value={mensagem.telefone || 'Telefone não enviado'} readOnly/>
+                        </div>
+
                         <div className="col-md-12 my-4">
                             <label htmlFor="inputTexto" className="form-label mb-1 fw-bold">Mensagem:</label>
                             <textarea rows={5} className="form-control" id="inputTexto" readOnly

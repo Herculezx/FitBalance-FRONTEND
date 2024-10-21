@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {},
     gridTemplateColumns: {
-      'custom': '1fr 4fr 1fr' ,
+      'custom': '1fr 4fr 1fr',
       'customSobreNos': '0.1fr 1fr 0.1fr',
       'faleConosco': '1fr 1fr'
     },
@@ -19,10 +19,15 @@ export default {
       'hover': '#52525b',
       'bd': '#f3f4f6',
       'borda': '#0c0a09',
-      'primaryColor': '#01D87D' ,
+      'primaryColor': '#01D87D',
       'bg-footer': '#0E1D1B',
-      'gray-300': '#00160c',
-      'hover-check': '#00ab63' ,
+      'gray-300': '#ededed',
+      'tr': '#c9c9c9',
+      'hover-check': '#00ab63',
+      'blue-600': '#2563eb', // Ajuste conforme necessário
+      'blue-100': '#dbf0ff', // Ajuste conforme necessário
+      'green-500': '#22c55e', // Ajuste conforme necessário
+      'green-400': '#4ade80', // Ajuste conforme necessário
     },
 
     screens: {
@@ -42,7 +47,7 @@ export default {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-    } ,
+    },
   },
   plugins: [],
 }

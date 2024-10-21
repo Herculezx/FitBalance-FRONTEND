@@ -14,13 +14,13 @@ function AreaFitBalance() {
           <div className="flex flex-col items-center gap-10 lg:justify-center">
             <h1 className="font-bold text-white underline underline-offset-[10px] text-xl lg:text-2xl">Área de exercícios:</h1>
             <p className="mx-5 text-white font-normal text-center sm:text-lg  xl:text-2xl lg:text-wrap">
-              A área de exercícios do <span className="text-primaryColor underline font-bold">FITBALANCE</span> é uma página com 3 modelos
-              salvos para quem quer mudar de vida, sendo eles, iniciante, para
+              A área de exercícios do <span className="text-primaryColor underline font-bold">FITBALANCE</span> é uma página com 3 categorias
+              de exercícios, para quem quer mudar de vida, sendo eles, iniciante, para
               quem nunca praticou exercícios, ou não tem hábito de praticar.
               Intermediário para quem já praticou, ou tem costume de se
               exercitar. Avançado para quem treina regularmente, e já está mais
-              acostumado. O usuário poderá salvar um modelo predefinido de
-              exercícios, após o seu login.
+              acostumado. O usuário poderá salvar o exercício que quiser de
+              cada categoria.
             </p>
           </div>
           <div className="my-10 flex flex-col items-center gap-3 justify-center border-y-2 border-white border-solid py-4">
