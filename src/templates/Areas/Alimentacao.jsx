@@ -44,7 +44,7 @@ const Alimentacao = () => {
       <MenuResponsive id="MenuResponsive" />
 
       <div id="minha-section"
-        className={`sticky top-0 flex flex-row  bg-white justify-between md:justify-center items-center ${isAtTop ? 'md:gap-52 , lg:gap-96 , py-2 , shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]' : 'gap-3'} transition-all duration-300 ease-in-out my-5`}>
+        className={`z-40 sticky top-0 flex flex-row  bg-white justify-between md:justify-center items-center ${isAtTop ? 'md:gap-52 , lg:gap-96 , py-2 , shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]' : 'gap-3'} transition-all duration-300 ease-in-out my-5`}>
         <div>
           <button type="button" onClick={() => {
             navigate('/home')

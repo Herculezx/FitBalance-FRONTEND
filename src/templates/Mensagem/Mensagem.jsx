@@ -60,12 +60,12 @@ const Mensagem = () => {
                                         key={mensagem.id}
                                         className={`hover:bg-tr text-center transition duration-150 ease-in-out ${index % 2 === 0 ? 'bg-bd' : 'bg-gray-300'}`}
                                     >
-                                        {user.nivelAcesso === "ADMIN" && <td className="px-5 py-4 border-b border font-semibold">{mensagem.id}</td>}
-                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.dataMensagem}</td>
-                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.emissorMensagem}</td>
-                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.email}</td>
-                                        <td className="px-5 py-4 border-b border font-semibold">{mensagem.statusMensagem}</td>
-                                        <td className="px-5 py-4 border-b border font-semibold">
+                                        {user.nivelAcesso === "ADMIN" && <td className="px-5 py-2 border-b border font-semibold">{mensagem.id}</td>}
+                                        <td className="px-5 py-2 border-b border font-semibold">{mensagem.dataMensagem}</td>
+                                        <td className="px-5 py-2 border-b border font-semibold">{mensagem.emissorMensagem}</td>
+                                        <td className="px-5 py-2 border-b border font-semibold">{mensagem.email}</td>
+                                        <td className="px-5 py-2 border-b border font-semibold">{mensagem.statusMensagem}</td>
+                                        <td className="px-5 py-2 border-b border font-semibold">
                                             <button
                                                 type="button"
                                                 onClick={() => lerMensagem(mensagem.id)}

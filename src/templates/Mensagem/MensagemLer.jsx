@@ -93,24 +93,24 @@ const MensagemLer = () => {
         )
     }
 
-    const inativarMensagem = () => {
-        setSuccessful(false);
+    // const inativarMensagem = () => {
+    //     setSuccessful(false);
 
-        MensagemService.inativar(id).then(
-            (response) => {
-                setMessage(response.data.message);
-                setSuccessful(true);
-                navigate('/mensagem');
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                })
-            }, (error) => {
-                const message = error.response.data.message;
-                setMessage(message);
-            }
-        )
-    }
+    //     MensagemService.inativar(id).then(
+    //         (response) => {
+    //             setMessage(response.data.message);
+    //             setSuccessful(true);
+    //             navigate('/mensagem');
+    //             window.scrollTo({
+    //                 top: 0,
+    //                 behavior: 'smooth'
+    //             })
+    //         }, (error) => {
+    //             const message = error.response.data.message;
+    //             setMessage(message);
+    //         }
+    //     )
+    // }
 
 
     return (
@@ -155,7 +155,7 @@ const MensagemLer = () => {
 
                         <div>
                             <label htmlFor="inputTel" className="form-label mb-1 fw-bold">Telefone</label>
-                            <input type="text" name="" id="inputTel" className="form-control" value={mensagem.telefone || 'Telefone não enviado'} readOnly/>
+                            <input type="text" name="" id="inputTel" className="form-control" value={mensagem.telefone || 'Telefone não enviado'} readOnly />
                         </div>
 
                         <div className="col-md-12 my-4">
@@ -167,16 +167,19 @@ const MensagemLer = () => {
                         </div>
 
                         {user.nivelAcesso === "ADMIN" && <div className="col-12 mb-3 d-flex justify-content-around">
-                            <button type="button" className="btn btn-warning"
+                            <button type="button"
+                                className="bg-3d py-2 w-1/6 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-[20%] duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
                                 onClick={() => marcarComoLida()}>
                                 Marcar como Lida
                             </button>
-                            <button type="button" className="btn btn-warning" onClick={() => reativarMensagem()}>
+                            <button type="button"
+                                className="bg-3d py-2 w-1/6 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-[20%] duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                onClick={() => reativarMensagem()}>
                                 Reativar
                             </button>
-                            <button type="button" className="btn btn-danger" onClick={() => inativarMensagem()}>
+                            {/* <button type="button" className="btn btn-danger" onClick={() => inativarMensagem()}>
                                 Inativar
-                            </button>
+                            </button> */}
                         </div>}
 
                     </form>

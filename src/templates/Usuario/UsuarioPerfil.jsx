@@ -181,10 +181,12 @@ const UsuarioPerfil = () => {
 
                                 <div className='pb-5 pt-4 flex flex-col gap-4 justify-center items-center'>
                                     <button type="submit"
-                                        className="btn btn-md btn-light text-borda text-lg font-bold px-8 duration-200 border-primaryColor border-2 border-solid ">
+                                        className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white">
                                         <i className="bi bi-envelope-open me-2"></i>Salvar
                                     </button>
-                                    <button type="button" className="btn btn-warning" onClick={() => inativoPeloUsuario()}>
+                                    <button type="button"
+                                        className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                        onClick={() => inativoPeloUsuario()}>
                                         Deletar Minha Conta!
                                     </button>
                                     <div>

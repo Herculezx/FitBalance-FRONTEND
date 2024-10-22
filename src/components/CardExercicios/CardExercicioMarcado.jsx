@@ -24,7 +24,7 @@ export default (Exercicios) => {
               }
               setFeito(!feito)
             }} className='h-7 w-7 lg:h-7 lg:w-7 appearance-none rounded-md border-borda border-2 checked:border-hover checked:bg-[#01ad64] hover:bg-[#80ecbe] hover:border-primaryColor duration-300' type='checkbox' />
-            <a className='flex justify-between items-center gap-3 cursor-pointer border-b border-white rounded-sm' onClick={() => navigate(`/exerciciosInstrucoes/${Exercicios.id}`)}>{Exercicios.nome} <FaChevronDown className="mr-2" /></a>
+            <a className='flex justify-between items-center gap-3 cursor-pointer border-b font-bold hover:px-2 duration-300 border-white rounded-sm' onClick={() => navigate(`/exerciciosInstrucoes/${Exercicios.id}`)}>{Exercicios.nome} <FaChevronDown className="mr-2" /></a>
           </div>
     )
 }

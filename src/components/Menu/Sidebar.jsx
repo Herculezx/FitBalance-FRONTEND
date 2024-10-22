@@ -65,12 +65,12 @@ const Sidebar = () => {
                     </form>
 
                     <nav className="flex flex-row justify-center flex-wrap items-center ">
-                        <Link className="underline mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
-                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>}
-                        {user.nivelAcesso === "USER" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Minhas Mensagens</Link>}
-                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
-                        <Link className="underline mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>
-                        {user.nivelAcesso === "ADMIN" && <Link className="underline mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}
+                        <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" aria-current="page" to={'/home'}>Home</Link>
+                        {user.nivelAcesso === "ADMIN" && <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Mensagens</Link>}
+                        {user.nivelAcesso === "USER" && <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" to={'/mensagem'}>Minhas Mensagens</Link>}
+                        {user.nivelAcesso === "ADMIN" && <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" to={'/usuario'}>Usuário</Link>}
+                        <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" to={'/meustreinos'}>Meus Treinos</Link>
+                        {user.nivelAcesso === "ADMIN" && <Link className=" hover:px-3 hover:border-b-2 hover:border-primaryColor text-center duration-300 mx-3 font-bold text-3d text-lg" to={'/exerciciosform'}>Exercicios Formulário</Link>}
                     </nav>
                 </div> :
                 <></>

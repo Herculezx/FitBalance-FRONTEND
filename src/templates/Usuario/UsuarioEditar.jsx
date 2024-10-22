@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react"
 import UsuarioService from "../../services/UsuarioService"
 import useForm from "../../hooks/useForm"
 import useEnviar from "../../hooks/useEnviar"
+import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
+import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 
 const UsuarioEditar = () => {
 
@@ -22,6 +24,7 @@ const UsuarioEditar = () => {
 
     const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
     const [usuario, setUsuario] = useState(objectValues);
+    const [successful, setSuccessful] = useState(false);
 
     const { requisitar } = useEnviar((dados) => {
         if (dados.id == usuario.id) {
@@ -116,8 +119,8 @@ const UsuarioEditar = () => {
         Caso contrário, deve ser definida 'onChange' ou 'readOnly'.
     */
     return (
-        <div className="d-flex">
-            <Sidebar />
+        <div className="">
+            <MenuResponsive />
             <div className="p-3 w-100">
                 <section className="m-2 p-2 shadow-lg">
                     <form className="row g-2 m-5 p-2 rounded-2 shadow" onSubmit={(e) => {
@@ -182,24 +185,32 @@ const UsuarioEditar = () => {
 
                         <div className='pb-5 pt-4 flex justify-center items-center'>
                             <button type="submit"
-                                className="btn btn-md btn-light text-borda text-lg font-bold px-8 duration-200 border-primaryColor border-2 border-solid ">
+                                className="bg-3d py-2 w-2/12 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-3/12 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white">
                                 <i className="bi bi-envelope-open me-2"></i>Salvar
                             </button>
                         </div>
 
-                        <button type="button" onClick={() => inativarUsuario()} className="btn btn-danger">
-                            Inativar Conta
-                        </button>
+                        <div className="flex justify-center">
+                            <button type="button"
+                                className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                onClick={() => inativarUsuario()}>
+                                Inativar Conta
+                            </button>
 
-                        <button className="btn btn-warning" onClick={() => reativarUsuario()}>
-                            Reativar
-                        </button>
+                            <button type="button"
+                                className="bg-3d py-2 w-1/3 mx-1 font-bold border-2 border-borda hover:bg-borda hover:border-hover hover:w-2/5 duration-300 rounded-lg shadow-lg flex justify-center items-center gap-2 text-md text-white"
+                                onClick={() => reativarUsuario()}>
+                                Reativar
+                            </button>
+                        </div>
 
                         <div className="col-12 mb-2 d-flex justify-content-between">
                         </div>
                     </form>
                 </section>
             </div>
+            <Sidebar />
+            <FooterResponsive />
         </div>
     )
 }
