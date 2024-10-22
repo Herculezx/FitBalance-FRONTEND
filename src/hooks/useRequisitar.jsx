@@ -3,7 +3,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react'
 
-export const backendUrl = "http://localhost:8080/"
+export const backendUrl = "https://8080-idx-tcc-fitbalance-1729591994238.cluster-qhrn7lb3szcfcud6uanedbkjnm.cloudworkstations.dev/"
 
 const useRequisitar = (url, dependencias = []) => {
    const [carregando , setCarregando] = useState(true);

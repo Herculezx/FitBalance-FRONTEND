@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import Menu from "../../components/Menu/Menu";
 import Footer from "../../components/Footer/Footer";
-
+import validacaoSenha from "../../constants/validacoes/validacaoSenha"
 import logoG from "../../assets/images/fitLogoG.jpg";
-
+import * as zod from "zod"
 import vetorLogin from "../../assets/images/vetorLogin.jpg"
 import styles from "../Cadastro/Cadastro.module.css";
 import useForm from "../../hooks/useForm";
@@ -13,22 +13,26 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive";
 import useRequisitar from "../../hooks/useRequisitar";
+import validacaoDataNasicmento from "../../constants/validacoes/validacaoDataNasicmento";
 
 const Cadastro = () => {
     const navigate = useNavigate();
 
-    const { mudar, valores, mudarDireto } = useForm({
+    const hoje = new Date();
+    const { mudar, valores, mudarDireto, erros , valido } = useForm({
         imagem: undefined,
         nome: "",
         senha: "",
         email: "",
         dataNascimento: new Date(Date.now()),
-    });
+    }, {nome: zod.string().min(4 , "Mínimo de 4 caracteres"), senha: validacaoSenha, email: zod.string().email({message: "Email inválido"}) , 
+    dataNascimento: validacaoDataNasicmento});
 
     const { requisitar } = useEnviar(() => {
         navigate("/login");
         console.log("recebido");
     });
+    const [message, setMessage] = useState();
 
     console.log(valores);
     function salvarFoto(e) {
@@ -43,6 +47,9 @@ const Cadastro = () => {
             reader.readAsDataURL(file);
         }
     }
+
+
+   
 
     console.log(valores);
 
@@ -60,10 +67,17 @@ const Cadastro = () => {
 
                     <div className="w-4/5">
                         <form
+                            noValidate
                             className="flex flex-col gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
-                                requisitar("usuario/create", valores);
+                                if(valido){
+                                    requisitar("usuario/create", valores);
+                                }
+                                else{
+                                    setMessage("Todos os campos devem ser preenchidos")
+                                }
+                                
                             }}
                         >
                             <div className="flex flex-col gap-2">
@@ -77,6 +91,7 @@ const Cadastro = () => {
                                     name="nome"
                                     required
                                 />
+                                <p>{erros.nome}</p>
                             </div>
 
                             <div className="flex flex-col gap-2">
@@ -90,6 +105,7 @@ const Cadastro = () => {
                                     name="email"
                                     required
                                 />
+                                <p>{erros.email}</p>
                             </div>
 
                             <div className="flex flex-col gap-2">
@@ -103,6 +119,7 @@ const Cadastro = () => {
                                     name="senha"
                                     required
                                 />
+                                <p>{erros.senha}</p>
                             </div>
 
                             <div className="flex flex-col gap-2">
@@ -111,10 +128,17 @@ const Cadastro = () => {
                                     onChange={mudar("dataNascimento")}
                                     type="date"
                                     name="data"
+                                    min={new Date(hoje.getFullYear() - 70, hoje.getMonth() , hoje.getDate()).toISOString().substring(0, 10)}
+                                    max={new Date(hoje.getFullYear() - 10, hoje.getMonth() , hoje.getDate()).toISOString().substring(0, 10)}
                                     id="data"
                                     className="form-control text-center fw-medium shadow"
                                     required
                                 />
+                                <p>{erros.dataNascimento}</p>
+                            </div>
+
+                            <div>
+                                {message}
                             </div>
 
                             <div className="flex flex-col items-center gap-4 mt-4 justify-evenly">

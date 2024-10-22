@@ -3,25 +3,30 @@ import MensagemService from "../../services/MensagemService";
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive";
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
 import vetorFaleConosco from "../../assets/images/vetorFaleConosco.png";
-import { useNavigate } from "react-router-dom";
+import { useFetcher, useNavigate } from "react-router-dom";
 import ButtonReUse from "../../components/BUTTONS/ButtonReUse";
 import { div } from "framer-motion/client";
+import useForm from "../../hooks/useForm";
+import * as zod from "zod"
 
 const FaleConosco = () => {
     const userJson = localStorage.getItem("user");
     const user = JSON.parse(userJson || '{}');
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({
+    const {mudar , valores: formData, setAll , erros} = useForm({
         email: "",
         emissorMensagem: "",
         texto: "",
         telefone: ""
-    });
+    } , {  telefone: zod.string().min(11, "O Mínimo de caracteres é 11").max(11, "O Máximo de caracteres é 11").refine(telefone => !isNaN(telefone), "Somente Números").optional() });
+
     const [successful, setSuccessful] = useState(false);
     const [message, setMessage] = useState("");
 
+
+
     useEffect(() => {
-        setFormData({ ...formData, emissorMensagem: user.nome, email: user.email });
+        setAll({ ...formData, emissorMensagem: user.nome, email: user.email });
     }, []);
 
     const handleChange = (e) => {
@@ -63,8 +68,7 @@ const FaleConosco = () => {
                                         <input type="text" className="form-control w-80 px-4" id="inputEmissor" required
                                             name="emissorMensagem"
                                             value={formData.emissorMensagem || ""}
-                                            readOnly
-                                            onChange={handleChange} />
+                                            readOnly/>
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="inputEmail" className="form-label mb-1 fw-bold">Email:</label>
@@ -79,7 +83,8 @@ const FaleConosco = () => {
                                         <input type="text" className="form-control w-80 px-4" id="inputTelefone"
                                             name="telefone"
                                             value={formData.telefone || ""}
-                                            onChange={handleChange} />
+                                            onChange={mudar("telefone")} />
+                                            <p>{erros.telefone}</p>
                                     </div>
                                     <div className="mb-1">
                                         <label htmlFor="inputTexto" className="form-label mb-1 fw-bold">Mensagem:</label>
@@ -90,7 +95,7 @@ const FaleConosco = () => {
                                             required
                                             name="texto"
                                             value={formData.texto || ""}
-                                            onChange={handleChange}
+                                            onChange={mudar("texto")}
                                         />
                                     </div>
                                     <div className="mt-3 flex flex-row justify-center gap-10">

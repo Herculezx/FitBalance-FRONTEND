@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //const API_URL =  "https://projeto.com.br/"; //remote(produção)
-const API_URL = "http://localhost:8080/"; //local(desenvolvimento)
+const API_URL = "https://8080-idx-tcc-fitbalance-1729591994238.cluster-qhrn7lb3szcfcud6uanedbkjnm.cloudworkstations.dev/"; //local(desenvolvimento)
 
 const mainInstance = axios.create({
   baseURL: API_URL,

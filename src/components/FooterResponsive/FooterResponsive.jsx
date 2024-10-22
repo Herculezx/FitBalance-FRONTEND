@@ -63,19 +63,19 @@ const FooterResponsive = () => {
 
               <div className="flex flex-col gap-3 ">
                 <a
-                  href="#"
+                  href="/home"
                   className="underline font-bold text-xl ml-5 underline-offset-8 decoration-primaryColor // sm:ml-0 //"
                 >
                   Home
                 </a>
                 <a
-                  href="#"
+                  href="/sobrenos"
                   className="underline font-bold text-xl ml-5 underline-offset-8 decoration-primaryColor // sm:ml-0 //"
                 >
                   Sobre Nós
                 </a>
                 <a
-                  href="#"
+                  href="/faleconosco"
                   className="underline font-bold text-xl ml-5 mb-3 underline-offset-8 decoration-primaryColor border-solid border-b border-white w-80 pb-4 // sm:ml-0 // lg:border-none"
                 >
                   Fale Conosco
@@ -84,7 +84,6 @@ const FooterResponsive = () => {
 
               <div>
                 <a
-                  href="#"
                   className="underline font-bold text-xl ml-5 underline-offset-8 decoration-primaryColor // sm:ml-0 //"
                 >
                   Contato

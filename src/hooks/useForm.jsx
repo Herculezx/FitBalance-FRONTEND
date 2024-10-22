@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-export default function useForm(data) {
+export const campoValido = "Campo Válido"
+
+export default function useForm(data, validacao = {}) {
     const [valores, setValores] = useState(data)
+    const [erros, setErros] = useState({ })
+    const valido = Object.values(erros).reduce((acumulacao, erro) => acumulacao && erro == campoValido, true)
 
     function converter(campo, valor) {
         const tipo = valores[campo]
@@ -18,10 +22,28 @@ export default function useForm(data) {
 
     return {
         valores,
+        valido,
         mudar: (campo) => (e) => {
-            setValores({...valores, [campo]: converter(campo, e.target.value)})
+            const valor = converter(campo, e.target.value)
+            setValores({...valores, [campo]: valor})
+            if (validacao[campo]) {
+                
+                const valido = validacao[campo].safeParse(valor)
+                console.log(valido)
+                if (!valido.success) {
+                    console.log(valido)
+                    console.log(valido.error.issues[0].message)
+                    setErros(erros => ({...erros, [campo]: valido.error.issues[0].message}))
+                }
+                else {
+                    setErros(erros => ({...erros, [campo]: campoValido}))
+                }
+            }
         },
+
         setAll: (valor) => setValores(valor),
+
+        erros,
         mudarDireto: (campo, valor) => setValores({...valores, [campo]: valor}) 
     }
 }

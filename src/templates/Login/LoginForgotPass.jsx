@@ -5,12 +5,15 @@ import useEnviar from "../../hooks/useEnviar";
 import useForm from "../../hooks/useForm";
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive";
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
+import * as zod from "zod"
+import validacaoSenha from "../../constants/validacoes/validacaoSenha";
 
 const LoginForgotPass = () => {
     const [parte, setParte] = useState(0);
     const [codigo, setCodigo] = useState();
     const [conta, setConta] = useState();
-    const { valores, mudar } = useForm({ email: "", codigo: "", senha: "" });
+    const [message , setMessage] = useState("")
+    const { valores, mudar , erros , } = useForm({ email: "", codigo: "", senha: "" } , {senha: validacaoSenha} );
     const navigate = useNavigate();
     const { requisitar } = useEnviar();
 
@@ -82,10 +85,14 @@ const LoginForgotPass = () => {
                                         if (valores.codigo == codigo) {
                                             setParte(2);
                                         }
+                                        else(
+                                            setMessage("Código Inválido")
+                                        )
                                     }}
                                 >
                                     Verificar
                                 </button>
+                                <p>{message}</p>
                             </div>
                         )}
                         {parte == 2 && (
@@ -94,6 +101,7 @@ const LoginForgotPass = () => {
                                     <div className="flex flex-col gap-4">
                                         <label htmlFor="novaSenha" className="font-bold text-xl">Insira sua Nova Senha!</label>
                                         <input className="form-control text-center fw-medium shadow" type="password" name="novaSenha" id="novaSenha" onChange={mudar("senha")} />
+                                        <p>{erros.senha}</p>
                                     </div>
 
                                     <button

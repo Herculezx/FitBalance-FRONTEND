@@ -7,12 +7,14 @@ import { useEffect, useRef, useState } from "react"
 import UsuarioService from "../../services/UsuarioService"
 import './Usuario.css';
 import useRequisitar from "../../hooks/useRequisitar"
+import * as zod from "zod" 
 
 import MenuResponsive from "../../components/MenuResponsive/MenuResponsive"
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive"
 import useForm from "../../hooks/useForm"
 import useEnviar from "../../hooks/useEnviar"
 import obterArquivoPorId from "../../services/obterArquivoPorId"
+import validacaoDataNasicmento from "../../constants/validacoes/validacaoDataNasicmento"
 
 const UsuarioPerfil = () => {
 
@@ -27,9 +29,21 @@ const UsuarioPerfil = () => {
         statusUsuario: "",
         fotoId: 0,
         foto: { conteudo: [], extensao: "" },
-    };
+    }
 
-    const { mudar, valores, setAll, mudarDireto } = useForm(objectValues)
+    const { mudar, valores, setAll, erros ,  mudarDireto } = useForm({
+        id: null,
+        nome: "",
+        email: "",
+        nivelAcesso: "",
+        dataNascimento: "",
+        statusUsuario: "",
+        fotoId: 0,
+        foto: { conteudo: [], extensao: "" },
+} , {nome: zod.string().min(4 , "Mínimo de 4 caracteres") , email: zod.string().email({message: "Email inválido"}) , 
+    dataNascimento: validacaoDataNasicmento
+})
+    
     const [usuario, setUsuario] = useState(objectValues);
     const [successful, setSuccessful] = useState(false);
     const [imagem, setImagem] = useState("");
@@ -165,17 +179,20 @@ const UsuarioPerfil = () => {
                                         <label htmlFor="inputNome" className="form-label mb-1 fw-bold">Nome:</label>
                                         <input type="text" className="form-control" id="inputNome" onChange={mudar("nome")}
                                             defaultValue={usuario.nome} />
+                                            <p>{erros.nome}</p>
                                     </div>
 
                                     <div className="">
                                         <label htmlFor="inputEmail4" className="form-label mb-1 fw-bold">Email:</label>
                                         <input type="email" className="form-control" id="inputEmail4" onChange={mudar("email")}
                                             defaultValue={usuario.email} />
+                                            <p>{erros.email}</p>
                                     </div>
 
                                     <div>
                                         <label htmlFor="dataNasc" className="form-label mb-1 fw-bold">Data de Nascimento:</label>
                                         <input type="date" className="form-control" name="dataNasc" id="dataNasc" onChange={mudar("dataNascimento")} defaultValue={valores.dataNascimento} />
+                                        <p>{erros.dataNascimento}</p>
                                     </div>
                                 </div>
 

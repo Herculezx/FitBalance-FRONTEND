@@ -9,11 +9,23 @@ import useRequisitar from '../../hooks/useRequisitar'
 import { useEffect } from 'react'
 import obterArquivoPorId from '../../services/obterArquivoPorId'
 
+import * as zod from "zod"
+
 const ExerciciosForm = () => {
   const navigate = useNavigate();
   const [imagem, setImagem] = useState("");
   const [video, setVideo] = useState("");
-  const { mudar, valores, mudarDireto, setAll } = useForm({ id: 0, nome: "", nivel: "iniciante", serie: 2, repeticoes: 10, instrucoes: "", video: undefined, imagem: undefined })
+  const { mudar, valores, mudarDireto, setAll, erros } = useForm(
+    {
+      id: 0,
+      nome: "",
+      nivel: "iniciante",
+      serie: 2,
+      repeticoes: 10,
+      instrucoes: "",
+      video: undefined,
+      imagem: undefined
+    } , { repeticoes: zod.string().min(200, "O máximo de 200").refine(repeticoes => !isNaN(repeticoes) , "Somente Números") })
   const { requisitar } = useEnviar(() => {
     navigate('/exercicios')
   })
@@ -132,6 +144,7 @@ const ExerciciosForm = () => {
           <div>
             <label htmlFor="repeticoes" className='text-white font-bold text-xl underline'>Repetições:</label>
             <input type="text" id='repeticoes' className='form-control border-solid border-3d border-2 rounded-lg text-center my-3 font-bold text-borda' onChange={mudar("repeticoes")} value={valores.repeticoes} />
+            <p>{erros.repeticoes}</p>
           </div>
 
           <div>

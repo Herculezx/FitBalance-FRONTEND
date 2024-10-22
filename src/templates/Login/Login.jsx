@@ -8,8 +8,11 @@ import vetorLogin from "../../assets/images/vetorLogin.jpg"
 import styles from "../Login/Login.module.css";
 import "../../index.css"
 import "../App/App.css"
+import * as zod from "zod"
 
 import FooterResponsive from "../../components/FooterResponsive/FooterResponsive";
+import useForm from "../../hooks/useForm";
+import validacaoSenha from "../../constants/validacoes/validacaoSenha";
 
 const Login = () => {
 
@@ -23,9 +26,10 @@ const Login = () => {
         navigate("/");
     }
 
-    const [formData, setFormData] = useState({});
+    const { valores: formData, mudar, erros , valido } = useForm({ email: "", senha: "" }, { email: zod.string().email({ message:"formato de email invalido" }), senha: validacaoSenha });
     const [message, setMessage] = useState();
-
+    const a = zod.string().safeParse("")
+    
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -40,30 +44,36 @@ const Login = () => {
         e.preventDefault();
         setMessage("");
         console.log(formData)
-        UsuarioService.signin(formData.email, formData.senha).then(
-            () => {
-                const userJson = localStorage.getItem("user");
-                const user = JSON.parse(userJson || '{}');
-                if (user.statusUsuario == 'ATIVO') {
-                    navigate("/home");
-                } else if (user.statusUsuario == 'TROCAR_SENHA') {
-                    navigate(`/newpass/` + user.id);
-                    //window.location.reload(); ordnael@email.com.br
+        if(valido){
+            UsuarioService.signin(formData.email, formData.senha).then(
+                () => {
+                    const userJson = localStorage.getItem("user");
+                    const user = JSON.parse(userJson || '{}');
+                    if (user.statusUsuario == 'ATIVO') {
+                        navigate("/home");
+                    } else if (user.statusUsuario == 'TROCAR_SENHA') {
+                        navigate(`/newpass/` + user.id);
+                        //window.location.reload(); ordnael@email.com.br
+                    }
+    
+                },
+                (error) => {
+                    const respMessage =
+                        (error.response &&
+                            error.response.data &&
+                            error.response.data.message) ||
+                        error.message ||
+                        error.toString();
+    
+                    setMessage(respMessage);
                 }
-
-            },
-            (error) => {
-                const respMessage =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-
-                setMessage(respMessage);
-            }
-
-        );
+    
+            );
+        }
+        else{
+            setMessage("Todos Campos devem estar válidos")
+        }
+    
     };
 
     return (
@@ -86,14 +96,16 @@ const Login = () => {
                     </div>
 
                     <div className=" w-4/5">
-                        <form action="" onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        <form action="" onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
                             <div className="flex flex-col gap-2">
                                  <label htmlFor="email" className="font-bold text-xl">Email:</label>
-                                 <input type="email" id="email" placeholder="exemplo@gmail.com"
+                                 <input onChange={mudar("email")} type="email" id="email" placeholder="exemplo@gmail.com"
+                                 
                                  name="email"
                                  className="form-control text-center fw-medium shadow" 
                                  value={formData.email || ""}
-                                 onChange={handleChange} />
+                                  />
+                                  <p>{erros.email}</p>
                             </div>
     
                             <div className="flex flex-col gap-2">
@@ -102,7 +114,8 @@ const Login = () => {
                                  name="senha"
                                  className="form-control text-center fw-medium shadow" 
                                  value={formData.senha || ""}
-                                 onChange={handleChange} />
+                                 onChange={mudar("senha")} />
+                                 <p>{erros.senha}</p>
                             </div>
 
                             <div>
