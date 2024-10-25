@@ -20,8 +20,9 @@ const Marcados = () => {
   const { dados: usuario } = useRequisitar("usuario/findByEmail/?email=" + user.email)
   const navigate = useNavigate()
   
+  console.log(usuario?.exercicios)
   const hoje = new Date()
-  console.log(usuario?.exercicios[0].feitos?.map(feito => ({...feito, data: new Date(feito.data)})))
+ 
   return (
     <div>
       <MenuResponsive />
@@ -45,7 +46,7 @@ const Marcados = () => {
           </div>
         </div>
         <div className='flex flex-col justify-center items-center gap-3 bg-3d text-white p-4 h-auto rounded-xl'>
-          {usuario?.exercicios.map(Exercicios => <CardExercicioMarcado {...Exercicios} />)}
+          {usuario?.exercicios?.map(Exercicios => <CardExercicioMarcado {...Exercicios} />)}
         </div>
       </section>
 

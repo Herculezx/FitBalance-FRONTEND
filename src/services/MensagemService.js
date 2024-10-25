@@ -20,15 +20,15 @@ const create = data => {
 };
 
 const inativar = (id) => {
-    return http.mainInstance.put(API_URL + `inativar/${id}`);
+    return http.mainInstance.post(API_URL + `inativar/${id}`);
 };
 
 const ativar = (id) => {
-    return http.mainInstance.put(API_URL + `ativar/${id}`);
+    return http.mainInstance.post(API_URL + `ativar/${id}`);
 };
 
 const marcarComoLida = (id) => {
-    return http.mainInstance.put(API_URL + `marcarComoLida/${id}`);
+    return http.mainInstance.post(API_URL + `marcarComoLida/${id}`);
 };
 
 const MensagemService = {

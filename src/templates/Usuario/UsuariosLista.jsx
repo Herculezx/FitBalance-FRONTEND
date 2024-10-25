@@ -29,7 +29,15 @@ const UsuariosLista = () => {
     return (
         <div className="">
             <MenuResponsive />
+
             <div className="flex justify-center items-center mt-10">
+                <div>
+                    <button type="button" onClick={() => {
+                        navigate('/usuario')
+                    }} className="btn btn-sm20 bg-3d  mx-1 fw-bold rounded shadow flex justify-center items-center gap-2 text-md text-white hover:bg-borda duration-300">
+                        <i className="bi bi-box-arrow-left // text-white"></i> Voltar
+                    </button>
+                </div>
                 {currentUser && <span className="text-white font-bold text-lg bg-primaryColor px-4 py-2 rounded-2xl shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">{currentUser.nome}</span>}
             </div>
             <div className="mt-10">

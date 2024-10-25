@@ -49,25 +49,25 @@ const create = (data) => {
 };
 
 const update = (id, data) => {
-  return http.multipartInstance.put(API_URL + `update/${id}`, data);
+  return http.multipartInstance.post(API_URL + `update/${id}`, data);
 };
 
 const alterarSenha = (id, data) => {
   const formData = new FormData();
   formData.append("senha", data.senha);
 
-  return http.mainInstance.put(API_URL + `alterarSenha/${id}`, formData);
+  return http.mainInstance.post(API_URL + `alterarSenha/${id}`, formData);
 };
 
 const inativar = (id, data) => {
-  return http.mainInstance.put(API_URL + `inativar/${id}`);
+  return http.mainInstance.post(API_URL + `inativar/${id}`);
 };
 const inativoPeloUsuario = (id, data) => {
-  return http.mainInstance.put(API_URL + `inativoPeloUsuario/${id}`);
+  return http.mainInstance.post(API_URL + `inativoPeloUsuario/${id}`);
 };
 
 const reativar = (id, data) => {
-  return http.mainInstance.put(API_URL + `reativar/${id}`);
+  return http.mainInstance.post(API_URL + `reativar/${id}`);
 };
 
 const findByNome = (nome) => {

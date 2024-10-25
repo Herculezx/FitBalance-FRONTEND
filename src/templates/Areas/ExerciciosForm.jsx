@@ -156,7 +156,7 @@ const ExerciciosForm = () => {
           <div className="flex justify-center">
             {imagem ? ( // Condicional para mostrar a imagem apenas se houver uma imagem
               <div className="flex flex-col items-center gap-5">
-                <h1 className="font-bold text-xl text-white bg-bg-footer px-4 py-2 rounded-xl">Sua Imagem de Perfil</h1>
+                <h1 className="font-bold text-xl text-white bg-bg-footer px-4 py-2 rounded-xl">Imagem do Exercício</h1>
                 <img
                   src={imagem}
                   alt=""

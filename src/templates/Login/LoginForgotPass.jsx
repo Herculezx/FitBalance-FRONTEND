@@ -30,7 +30,9 @@ const LoginForgotPass = () => {
             <MenuResponsive />
             <div>
                 <div className="flex justify-center items-center w-full my-20">
-                    <form action="" className="border-[1.5px] rounded-xl p-5 flex flex-col">
+                    <form tabIndex={1} onSubmit={(e) => {
+                        e.preventDefault()
+                    }} action="" className="border-[1.5px] rounded-xl p-5 flex flex-col">
                         {parte == 0 && (
                             <div className="flex flex-col gap-4">
                                 <h1 className="font-bold text-xl bg-bg-footer p-2 rounded-xl text-bd">informe seu email para Verificação</h1>
